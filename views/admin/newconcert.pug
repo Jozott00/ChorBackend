@@ -1,0 +1,100 @@
+extends ../layout/main-layout.pug
+
+block content
+    main.p-4
+        h3 #{editing ? concert.name : "Neues Konzert Erstellen"}
+        form.d-flex.flex-wrap.flex-row(action=editing ? "/manage/concert/edit/" + concert.id : "/manage/concerts/new", method="post")
+            div.m-3
+                .form-group.row
+                    label.col-sm-4.col-form-label(for="name") Name
+                    .col-sm-8
+                        input.form-control(type="text", name="name", value=editing ? concert.name : "" )
+                .form-group.row
+                    label.col-sm-4.col-form-label(for="componist") Komponist
+                    .col-sm-8
+                        input.form-control(type="text", name="componist", value=editing ? concert.componist : "")
+                .form-group.row
+                    label.col-sm-4.col-form-label(for="date") Datum
+                    .col-sm-8
+                        input.form-control(type="date", name="date", value=editing ? moment(concert.date).format('YYYY-MM-DD') : "") 
+                .form-group.row
+                    label.col-sm-4.col-form-label(for="sell_start") Verkaufsstart
+                    .col-sm-8
+                        input.form-control(type="date", name="sell_start", value=editing ? moment(concert.sell_start).format('YYYY-MM-DD') : "") 
+                .form-group.row
+                    label.col-sm-4.col-form-label(for="sell_end") Verkaufsende
+                    .col-sm-8
+                        input.form-control(type="date", name="sell_end", value=editing ? moment(concert.sell_end).format('YYYY-MM-DD') : "") 
+            div.m-3
+                .form-group.row
+                    label.col-sm-4.col-form-label(for="location") Location
+                    .col-sm-8
+                        input.form-control(type="text", name="location", value=editing ? concert.info.location : "")
+                .form-group.row
+                    label.col-sm-4.col-form-label(for="startTime") Konzertbeginn
+                    .col-sm-8
+                        input.form-control(type="time", name="startTime", value=editing ? concert.info.time : "")
+                .form-group.row
+                    label.col-sm-4.col-form-label(for="info") Information
+                    .col-sm-8
+                        textarea(name="info", cols="30", rows="5").form-control #{editing ? concert.info.info : ""}
+            div.m-3
+                p Sektorverfügbarkeit:
+                .d-flex
+                    each sector in sectors
+                        .sm-btn.p-2(data-id=sector.id data-toggle="modal" data-target=("#setting" + sector.id)) € #{sector.price},-
+                        .hl
+                        .modal.fade(id=("setting" + sector.id) tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true")
+                            .modal-dialog.modal-dialog-centered(role="document")
+                                .modal-content
+                                    .modal-header
+                                        .d-flex
+                                            .modal-title.font-weight-bold € #{sector.price} Sektorverfügbarkeit
+                                            label.ml-3(for=("is_available" + sector.id)) Aktviert:
+                                                    input.mx-2(type="checkbox", name=("is_available" + sector.id), checked=editing ? (concert.availabilities[sector.id - 1].is_available ? "checked" : undefined) : "checked")
+                                        button.close(type="button" data-dismiss="modal" aria-label="Close")
+                                            span(aria-hidden="true") &times;
+                                    .modal-body(style="height: 300px, width: 80vw")
+                                        .d-flex.flex-wrap
+                                            .p-2
+                                                label(for=("hr" + sector.id)) Hauptschiff Rechts
+                                                    input.mx-2(type="checkbox", name=("hr" + sector.id), checked=editing ? (concert.availabilities[sector.id - 1].hr ? "checked" : undefined) : "checked")
+                                            .p-2
+                                                label(for=("hl" + sector.id)) Hauptschiff Links
+                                                    input.mx-2(type="checkbox", name=("hl" + sector.id), checked=editing ? (concert.availabilities[sector.id - 1].hl ? "checked" : undefined) : "checked")
+                                            .p-2
+                                                label(for=("sr" + sector.id)) Seitenschiff Rechts
+                                                    input.mx-2(type="checkbox", name=("sr" + sector.id), checked=editing ? (concert.availabilities[sector.id - 1].sr ? "checked" : undefined) : "checked")
+                                            .p-2
+                                                label(for=("sl" + sector.id)) Seitenschiff Links
+                                                    input.mx-2(type="checkbox", name=("sl" + sector.id), checked=editing ? (concert.availabilities[sector.id - 1].sl ? "checked" : undefined) : "checked")
+                                            .p-2
+                                                label(for=("hrs" + sector.id)) Stühle Hauptschiff Rechts
+                                                    input.mx-2(type="checkbox", name=("hrs" + sector.id), checked=editing ? (concert.availabilities[sector.id - 1].hrs ? "checked" : undefined) : "checked")
+                                            .p-2
+                                                label(for=("hls" + sector.id)) Stühle Hauptschiff Links
+                                                    input.mx-2(type="checkbox", name=("hls" + sector.id), checked=editing ? (concert.availabilities[sector.id - 1].hls ? "checked" : undefined) : "checked")
+                                            .p-2
+                                                label(for=("srs" + sector.id)) Stühle Seitenschiff Rechts
+                                                    input.mx-2(type="checkbox", name=("srs" + sector.id), checked=editing ? (concert.availabilities[sector.id - 1].srs ? "checked" : undefined) : "checked")
+                                            .p-2
+                                                label(for=("sls" + sector.id)) Stühle Seitenschiff Links
+                                                    input.mx-2(type="checkbox", name=("sls" + sector.id), checked=editing ? (concert.availabilities[sector.id - 1].sls ? "checked" : undefined) : "checked")
+                                            .p-2
+                                                label(for=("er" + sector.id)) Empore Rechts
+                                                    input.mx-2(type="checkbox", name=("er" + sector.id), checked=editing ? (concert.availabilities[sector.id - 1].er ? "checked" : undefined) : "checked")
+                                            .p-2
+                                                label(for=("el" + sector.id)) Empore Links
+                                                    input.mx-2(type="checkbox", name=("el" + sector.id), checked=editing ? (concert.availabilities[sector.id - 1].el ? "checked" : undefined) : "checked")
+                                            .p-2
+                                                label(for=("lr" + sector.id)) Lodge Rechts
+                                                    input.mx-2(type="checkbox", name=("lr" + sector.id), checked=editing ? (concert.availabilities[sector.id - 1].lr ? "checked" : undefined) : "checked")
+                                            .p-2
+                                                label(for=("ll" + sector.id)) Lodge Links
+                                                    input.mx-2(type="checkbox", name=("ll" + sector.id), checked=editing ? (concert.availabilities[sector.id - 1].ll ? "checked" : undefined) : "checked")
+                button.btn.btn-primary.btn-sm.px-4.mt-4(type="submit" onclick="load()") #{editing ? "Speichern" : "Erstellen"}
+    .load#load
+        .spinner
+            .bounce1
+            .bounce2
+            .bounce3

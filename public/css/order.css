@@ -1,0 +1,28 @@
+#map {
+  width: 50vw;
+  padding: 2rem;
+  height: 100vh;
+}
+
+.selected {
+  fill: red !important;
+}
+.popup {
+  position: absolute;
+  display: inline-block;
+  cursor: pointer;
+  top: 0;
+  opacity: 0;
+  width: 10px;
+  height: 10px;
+  background-color: red;
+}
+
+.active {
+  opacity: 1;
+}
+
+rect,
+path {
+  cursor: pointer;
+}

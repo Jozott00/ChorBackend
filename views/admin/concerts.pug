@@ -1,0 +1,28 @@
+extends ../layout/main-layout.pug
+
+
+block content
+    main.p-3
+        .d-flex.pl-4.mb-4
+            h3.align-self-center.m-0 Alle Konzerte
+            //- form(action="/manage/concerts/new")
+            //-     button.btn.btn-light.btn-sm(type="submit") Neues Konzert erstellen
+            a.btn.btn-light.btn-sm.lh-2(href="/manage/concerts/new") Neues Konzert erstellen
+        .d-flex.flex-wrap
+            each concert in concerts
+                .card.flex-fill.m-2.shadow(style="width: 18rem;")
+                    a.fdec(href=("/manage/concert/" + concert.id))
+                        .card-body
+                            h5.card-title #{concert.name}
+                            h6.card-subtitle.mb-2.text-muted #{concert.componist}
+                            p.card-text Datum:
+                                span.badge.ml-2 #{moment(concert.date).format('DD.MM.YYYY')}
+                            p.card-text Verkauf:
+                                span.badge.badge-primary.ml-2 #{moment(concert.sell_start).format('DD.MM.YYYY')}  -  #{moment(concert.sell_end).format('DD.MM.YYYY')}
+                            .d-flex.flex-wrap.mb-2
+                                p Gekauft:
+                                    span.badge.badge-primary.mx-2 #{concert.sold}
+                                p Bestellt:
+                                    span.badge.badge-primary.ml-2 #{concert.ordered}
+                            a.card-link(href=("/manage/concert/edit/" + concert.id)) Bearbeiten
+            

@@ -1,0 +1,266 @@
+main {
+  font-size: 14px;
+}
+
+/*Überschrieben*/
+.card {
+  border-radius: 0.75rem;
+  border: 0;
+}
+
+.shadow {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.23) !important;
+}
+
+.btn {
+  border-radius: 50px;
+}
+
+button:focus {
+  outline: none;
+}
+
+.form-control {
+  height: 1.7rem;
+  font-size: 14px;
+}
+
+select:focus {
+  outline: none;
+}
+
+input:focus {
+  outline: none;
+}
+
+input {
+  border-radius: 0.7rem;
+}
+
+.textarea {
+  resize: none;
+  width: 100%;
+  height: 14rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.7rem;
+  padding: 10px;
+  opacity: 0.9;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+.badge {
+  border-radius: 0.5rem;
+  font-size: 90%;
+  padding: 0.5rem;
+}
+
+p {
+  margin-block-end: 5px;
+}
+
+.table th,
+.table td {
+  vertical-align: middle !important;
+}
+
+tbody {
+  border: none !important;
+}
+
+table {
+  border-collapse: collapse;
+  font-size: small;
+}
+
+th {
+  border: none;
+}
+
+tbody.data {
+  border-radius: 0 0 0.5rem 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.23) !important;
+}
+
+.col-form-label {
+  padding-top: 0;
+}
+
+label {
+  margin: 0;
+}
+
+/* Additional classes */
+
+.lh-1 {
+  line-height: 1.8rem !important;
+}
+
+.lh-2 {
+  line-height: 2.5rem;
+}
+
+.mw-50 {
+  max-width: 50% !important;
+}
+
+.wp-30 {
+  width: 200px !important;
+}
+
+.fdec {
+  text-decoration: none !important;
+  color: black;
+}
+
+.fdec:hover {
+  color: black;
+}
+
+.btn-light {
+  background-color: white;
+  box-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.23);
+  border-color: white;
+  color: #007bff;
+  margin: 0 20px;
+  padding: 0 20px;
+}
+
+.btn-light:hover {
+  color: white;
+  border-color: transparent;
+  background-color: #007bff;
+}
+
+.btn-white {
+  /* box-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.23); */
+  border-color: transparent;
+  color: #007bff;
+}
+
+.btn-white:hover {
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.sm-btn {
+  /* color: #007bff; */
+  font-weight: 700;
+  cursor: pointer;
+}
+.sm-btn:hover {
+  background-color: rgba(0, 123, 255, 1);
+  color: white;
+  transition: ease-in-out 0.2s;
+}
+
+.lite-visible {
+  opacity: 0.5 !important;
+}
+.visible {
+  opacity: 1 !important;
+}
+
+.toggle-item {
+  opacity: 0;
+  -webkit-appearance: push-button;
+  -moz-appearance: button;
+}
+
+.toggle-item:hover {
+  opacity: 1 !important;
+  cursor: pointer;
+}
+
+.conInput[type='checkbox'] {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+
+.hl {
+  border: 0.5px solid gray;
+  opacity: 0.5;
+}
+/* Loading Indicator */
+
+.load {
+  z-index: -1;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 123, 255, 0.75);
+}
+
+.info {
+  z-index: 123;
+  opacity: 1;
+  top: 0;
+  left: 0;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 123, 255, 0.75);
+}
+
+.active {
+  z-index: 100;
+  opacity: 1;
+}
+.spinner {
+  margin: calc(25vh - 9px) auto 0;
+  width: 70px;
+  text-align: center;
+}
+
+.spinner > div {
+  width: 18px;
+  height: 18px;
+  background-color: white;
+
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes sk-bouncedelay {
+  0%,
+  80%,
+  100% {
+    -webkit-transform: scale(0);
+  }
+
+  40% {
+    -webkit-transform: scale(1);
+  }
+}
+
+@keyframes sk-bouncedelay {
+  0%,
+  80%,
+  100% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+
+  40% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}

@@ -1,0 +1,92 @@
+extends ../layout/main-layout.pug
+
+block content
+    main.py-4.px-5
+        .d-flex.flex-wrap
+            div
+                h4.mb-1#lol #{concert.name}
+                h5.text-muted #{concert.componist}
+            a.btn.btn-light.btn-sm.lh-1.mb-4(style="max-height: 2rem" href=("/manage/concert/edit/" + concert.id)) Bearbeiten
+            div.mx-3
+                p.text-muted Verkaufte Karten: 
+                    span.font-weight-bold.ml-1 #{concert.sold}
+                p.text-muted Offene Karten: 
+                    span.font-weight-bold.ml-1 #{concert.ordered}
+            p.text-muted.mx-3 Summe: 
+                span.font-weight-bold.ml-1 € #{concert.incomes},-
+            div.ml-auto.text-right
+                p.text-muted Konzert am  
+                    span.font-weight-bold #{moment(concert.date).format('DD.MM.YYYY')}
+                p.text-muted Verkauf endet am  
+                    span.font-weight-bold #{moment(concert.sell_end).format('DD.MM.YYYY')}
+
+        form(action=("update/" + concert.id), method="post")
+            table.table.text-center(rules="none").mt-4
+                div
+                    tr
+                        th(scope="col") ID
+                        th(scope="col") Bestelldatum
+                        th(scope="col") Karten
+                        //- th(scope="col") Details
+                        th(scope="col") Erm.
+                        th(scope="col") Gesamt
+                        th(scope="col") Bez.
+                        th(scope="col") Name
+                        th(scope="col") Vorname
+                        th(scope="col") Tel.
+                        th(scope="col") Email
+                        th(scope="col")
+                            button.btn-white(type="submit") Speichern
+
+                tbody.data
+                    each buyer in buyers
+                        tr(data-toggle="visible", data-target=("toggle" + buyer.id) ,data-row="1")
+                            td(scope="row") #{buyer.id}
+                            td #{moment(buyer.date).format('DD.MM.YYYY')}
+                            td.sm-btn(data-id=(buyer.id) data-toggle="modal" data-target=("#details" + buyer.id)) #{buyer.quantity}
+                            //- td € #{buyer.tickets[0].price},-
+                            td € #{buyer.discount},-
+                            td € #{buyer.total},-
+                            td
+                                img(src=("/img/" + (buyer.is_paid ? "check" : "close") + ".svg"), alt=buyer.is_paid, style="height: 17px")
+                            td #{buyer.name}
+                            td #{buyer.firstname}
+                            td #{buyer.phone}
+                            td #{buyer.email}
+                            td
+                                //- label.label(for=("toggle" + buyer.id))
+                                //-     input(type="checkbox" name=("toggle" + buyer.id) id=("toggle" + buyer.id))
+                                label
+                                    input.conInput(type="checkbox", name=buyer.id)
+                                    img.toggle-item(id=("toggle" + buyer.id) data-id=buyer.id src=("/img/" + (!buyer.is_paid ? "check" : "close") + ".svg"), alt=buyer.is_paid, style="height: 17px")
+                                div.result
+
+                        .modal.fade(id=("details" + buyer.id) tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true")
+                            .modal-dialog.modal-dialog-centered(role="document")
+                                .modal-content
+                                    .modal-header
+                                        .d-flex
+                                            .modal-title.font-weight-bold #{buyer.firstname + " " + buyer.name}
+                                            p.ml-2 € #{buyer.total},-
+                                        button.close(type="button" data-dismiss="modal" aria-label="Close")
+                                            span(aria-hidden="true") &times;
+                                    .modal-body
+                                        .container-fluid.text-center
+                                            .row
+                                                .col-md-2.col-sm-2 Anzahl
+                                                .col-md-2.col-sm-2 Preis
+                                                .col-md-2.col-sm-2 Ermäßigung
+                                                .col-md-4.col-sm-4 Sektor
+                                                .col-md-2.col-sm-2 Platz
+                                                
+                                            hr
+                                            each ticket in buyer.tickets
+                                                .row
+                                                    .col-md-2.col-sm-2  #{ticket.amount}
+                                                    .col-md-2.col-sm-2  #{'€ ' + ticket.price+',-'}
+                                                    .col-md-2.col-sm-2  #{ticket.discount * 100} %
+                                                    .col-md-4.col-sm-4  #{ticket.sector}
+                                                    .col-md-2.col-sm-2  #{ticket.rowName}
+                                                hr
+                                
+                        
