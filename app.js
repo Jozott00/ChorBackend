@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const sequelize = require('./utils/database');
 const path = require('path');
 
+const webSocket = require('./controller/webSocket');
 const errorController = require('./controller/error');
 const Concert = require('./models/concert');
 const Info = require('./models/info');
@@ -38,7 +39,7 @@ Concert.hasMany(Row);
 
 sequelize
   .sync({
-    force: true
+    // force: true
   })
   .then(result => {
     console.log('------------------');
@@ -68,9 +69,11 @@ sequelize
   .then(result => {
     // Port 8080 for Google App Engine
     app.set('port', process.env.PORT || 3000);
-    app.listen(app.get('port'), () => {
+    const server = app.listen(app.get('port'), () => {
       console.log('Listen on Port ' + app.get('port'));
     });
+
+    webSocket.run(server);
   })
   .catch(err => {
     console.log(err);

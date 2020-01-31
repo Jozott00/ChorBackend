@@ -5,8 +5,22 @@ block style
 
 block content
     div#map
-    div.popup
+
+    each seat in seats
+        .modal.fade(id=("seat_" + seat.generalId) tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true")
+                            .modal-dialog.modal-dialog-centered(role="document")
+                                .modal-content
+                                    .modal-header
+                                        //- .d-flex
+                                        //-     .modal-title.font-weight-bold #{buyer.firstname + " " + buyer.name}
+                                        //-     p.ml-2 € #{buyer.total},-
+                                        //- button.close(type="button" data-dismiss="modal" aria-label="Close")
+                                        //-     span(aria-hidden="true") &times;
+                                    .modal-body
+                                        .container-fluid.text-center
+                                            
 
 block scripts
+    script(src="https://cdn.jsdelivr.net/npm/socket.io-client@2/dist/socket.io.js")
     script(src="/js/imgMap.js")
 

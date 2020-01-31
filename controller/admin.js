@@ -6,7 +6,7 @@ const Info = require('../models/info');
 const Availability = require('../models/availability');
 const Seq = require('sequelize');
 
-const helper = require('../utils/helper');
+const helper = require('../helpers/helper');
 
 exports.getIndex = (req, res, next) => {
   Concert.findAll({

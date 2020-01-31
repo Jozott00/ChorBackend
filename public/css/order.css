@@ -7,6 +7,7 @@
 .selected {
   fill: red !important;
 }
+
 .popup {
   position: absolute;
   display: inline-block;
@@ -21,6 +22,11 @@
 .active {
   opacity: 1;
 }
+
+.deactivated {
+  fill: gray !important;
+}
+
 
 rect,
 path {
