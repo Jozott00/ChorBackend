@@ -32,7 +32,7 @@ exports.createSeats = (concert, sectors) => {
           sectorId: sectorId
         })
         .then(row => {
-          console.log('row:', row);
+          console.log('Created seat ', row.generalId);
         })
         .catch(err => {
           console.log('err:', err);
@@ -49,7 +49,7 @@ exports.createSeats = (concert, sectors) => {
           sectorId: sectorId
         })
         .then(row => {
-          console.log('row:', row);
+          console.log('Created seat ', row.generalId);
         })
         .catch(err => {
           console.log('err:', err);
@@ -70,8 +70,6 @@ exports.createSeats = (concert, sectors) => {
       if (i <= 2) maxSeats = 8;
       else if (i == 7) maxSeats = 2;
 
-      console.log('Reihe: ', i);
-
       concert
         .createRow({
           is_available:
@@ -80,10 +78,10 @@ exports.createSeats = (concert, sectors) => {
           max_seats: maxSeats,
           orders: 0,
           generalId: 'sl-' + i,
-          sectorId: sectorId
+          sectorId: i == 5 ? 4 : sectorId
         })
         .then(row => {
-          console.log('row:', row);
+          console.log('Created seat ', row.generalId);
         })
         .catch(err => {
           console.log('err:', err);
@@ -100,7 +98,7 @@ exports.createSeats = (concert, sectors) => {
           sectorId: sectorId
         })
         .then(row => {
-          console.log('row:', row);
+          console.log('Created seat ', row.generalId);
         })
         .catch(err => {
           console.log('err:', err);
@@ -108,7 +106,7 @@ exports.createSeats = (concert, sectors) => {
     }
 
     //Emporen Sitzplätze
-    for (i = 1; i <= 13; i++) {
+    for (i = 1; i <= 16; i++) {
       let sectorId = 0;
 
       //check sectorid
@@ -131,7 +129,7 @@ exports.createSeats = (concert, sectors) => {
           sectorId: sectorId
         })
         .then(row => {
-          console.log('row:', row);
+          console.log('Created seat ', row.generalId);
         })
         .catch(err => {
           console.log('err:', err);
@@ -148,7 +146,7 @@ exports.createSeats = (concert, sectors) => {
           sectorId: sectorId
         })
         .then(row => {
-          console.log('row:', row);
+          console.log('Created seat ', row.generalId);
         })
         .catch(err => {
           console.log('err:', err);
@@ -177,7 +175,7 @@ exports.createSeats = (concert, sectors) => {
           sectorId: sectorId
         })
         .then(row => {
-          console.log('row:', row);
+          console.log('Created seat ', row.generalId);
         })
         .catch(err => {
           console.log('err:', err);
@@ -226,7 +224,7 @@ exports.createSeats = (concert, sectors) => {
           sectorId: sectorId
         })
         .then(row => {
-          console.log('row:', row);
+          console.log('Created seat ', row.generalId);
         })
         .catch(err => {
           console.log('err:', err);
@@ -243,7 +241,7 @@ exports.createSeats = (concert, sectors) => {
           sectorId: sectorId
         })
         .then(row => {
-          console.log('row:', row);
+          console.log('Created seat ', row.generalId);
         })
         .catch(err => {
           console.log('err:', err);
@@ -267,9 +265,7 @@ exports.createSeats = (concert, sectors) => {
           generalId: 'll-' + (sectorId == 4 ? '1-' + i : '2-' + (i - 3)),
           sectorId: sectorId
         })
-        .then(row => {
-          console.log('row:', row);
-        })
+        .then(row => {})
         .catch(err => {
           console.log('err:', err);
         });
@@ -285,7 +281,7 @@ exports.createSeats = (concert, sectors) => {
           sectorId: sectorId
         })
         .then(row => {
-          console.log('row:', row);
+          console.log('Created seat ', row.generalId);
         })
         .catch(err => {
           console.log('err:', err);

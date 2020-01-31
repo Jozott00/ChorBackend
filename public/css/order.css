@@ -27,6 +27,17 @@
   fill: gray !important;
 }
 
+#seatPopover {
+  position: absolute;
+  opacity: 0;
+  z-index: -20;
+  background-color: white;
+}
+
+.hoverActive {
+  opacity: 1 !important;
+  z-index: 30 !important;
+}
 
 rect,
 path {

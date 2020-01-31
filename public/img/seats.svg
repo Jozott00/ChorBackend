@@ -1179,7 +1179,8 @@
 	<rect id="hl-3" x="156.2" y="234.6" class="st30" width="43.6" height="7.5"/>
 	<path id="hl-2" class="st31" d="M199.2,230.9c0,0-11.4,0.5-21.5-0.7c-10.3-1.2-21-6.7-21-6.7l4.9-7.7c0,0,6,3.8,17.1,5.7
 		c11.5,1.9,20.5,0.8,20.5,0.8V230.9z"/>
-	<path id="hl-1" class="st31" d="M199.1,219c0,0-8.5,0.6-18.6-0.5c-10.3-1.2-20.7-7.3-20.7-7.3l4.9-7.7c0,0,5.9,4.5,17,6.3
+	<path data-toggle="popover"
+        data-trigger="hover" data-content="Some content inside the popover" id="hl-1" class="st31" d="M199.1,219c0,0-8.5,0.6-18.6-0.5c-10.3-1.2-20.7-7.3-20.7-7.3l4.9-7.7c0,0,5.9,4.5,17,6.3
 		c11.5,1.9,17.4,0.5,17.4,0.5L199.1,219z"/>
 	<rect id="hl-u" x="135.5" y="428" class="st28" width="9.8" height="9.8"/>
 	<rect id="hl-t" x="135.5" y="418.1" class="st28" width="9.8" height="9.8"/>

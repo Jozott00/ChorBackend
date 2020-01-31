@@ -4,6 +4,7 @@ const Buyer = require('../models/buyer');
 const Sector = require('../models/sector');
 const Info = require('../models/info');
 const Availability = require('../models/availability');
+const Row = require('../models/row');
 const Seq = require('sequelize');
 
 const helper = require('../helpers/helper');
@@ -264,9 +265,7 @@ exports.getConcertEdit = (req, res, next) => {
 };
 
 exports.postConcertEdit = (req, res, next) => {
-  console.log('Hello World');
-
-  conId = req.params.concertId;
+  const conId = req.params.concertId;
   const name = req.body.name;
   const componist = req.body.componist;
   const date = req.body.date;
@@ -293,6 +292,9 @@ exports.postConcertEdit = (req, res, next) => {
 
       {
         model: Availability
+      },
+      {
+        model: Row
       }
     ]
   })
@@ -333,6 +335,30 @@ exports.postConcertEdit = (req, res, next) => {
 
       concert.availabilities.forEach(av => {
         av.save();
+      });
+
+      concert.rows.forEach(row => {
+        //checkt ob sektor verfügbar ist
+        let av = concert.availabilities.find(av => av.sectorId == row.sectorId);
+        let area;
+
+        //get right area (had problems cause e.g hls has the generalId hl-.. inside the row)
+        if (Number.isInteger(Number.parseInt(row.generalId.split('-')[1]))) {
+          area = row.generalId.split('-')[0];
+          // console.log('area:', area);
+        } else {
+          area = row.generalId.split('-')[0] + 's';
+          const s = row.generalId.split('-')[1];
+          // console.log('s:', s);
+          // console.log('isNumber', Number.isInteger(Number.parseInt(s)));
+        }
+
+        let isAv = av[area];
+        if (isAv && row.orders < row.max_seats && av.is_available)
+          row.is_available = true;
+        else row.is_available = false;
+
+        row.save();
       });
     })
     .then(concert => {

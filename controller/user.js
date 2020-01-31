@@ -1,7 +1,6 @@
 const Concert = require('../models/concert');
 
 exports.getConcert = (req, res, next) => {
-  console.log('load concert order page');
   let concert;
   let seats;
   Concert.findByPk(req.params.concertId)

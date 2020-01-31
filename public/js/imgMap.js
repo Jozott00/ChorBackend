@@ -1,11 +1,12 @@
 $(document).ready(function() {
-  //seats Auswertung
+  // //load church map
+  // $('#map').load('/img/seats.svg');
+
+  // ------- SOCKET COMMUNICATION ------
   const socket = io.connect();
   const concertId = parseInt(window.location.href.split('/').pop());
 
-  $('#map').load('/img/seats.svg');
-
-  socket.emit('getSeats', {
+  socket.emit('setup', {
     concertId: concertId
   });
 
@@ -22,19 +23,38 @@ $(document).ready(function() {
   //got seats
   socket.on('seats', seats => {
     console.log('seats:', seats);
+    updateSeats(seats);
+  });
 
-    seats.forEach(seat => {
-      const s = $('#' + seat.generalId);
-      console.log('s:', s);
-      if (seat.is_available) {
-        if (s.hasClass('deactivated')) s.removeClass('deactivated');
-      } else {
-        if (!s.hasClass('deactivated')) s.addClass('deactivated');
-      }
+  //first communication
+  socket.on('setup', seats => {
+    //load church map
+    $('#map').load('/img/seats.svg', function() {
+      updateSeats(seats);
+      popover();
     });
   });
 
-  //on click
+  //SETUP DATA FOR POPOVER
+  function updateSeats(seats) {
+    seats.forEach(seat => {
+      const s = $('#' + seat.generalId);
+
+      //set seat data
+      s.attr('data-content', seat.orders + '/' + seat.max_seats);
+
+      //only popover if available
+      if (seat.is_available) {
+        s.attr('data-toggle', 'popover');
+        if (s.hasClass('deactivated')) s.removeClass('deactivated');
+      } else {
+        s.attr('data-toggle', 'none');
+        if (!s.hasClass('deactivated')) s.addClass('deactivated');
+      }
+    });
+  }
+
+  //ON SEATSELECTION
   $(document).on('click', 'rect, path', function() {
     if (!$(this).hasClass('st22')) {
       var clicks = $(this).data('clicks');
@@ -42,7 +62,6 @@ $(document).ready(function() {
         $(this).removeClass('selected');
       } else {
         $(this).addClass('selected');
-        console.log('clicked');
         socket.emit('chat', {
           value: 'hello'
         });

@@ -8,16 +8,27 @@ exports.run = server => {
 
   //on socketconnection
   io.on('connection', socket => {
-    console.log('Connected with ', socket.id);
+    console.log('Socket connected with', socket.id);
     socket.emit('msg', { msg: 'Socket connected' });
 
-    //getSeats abfrage
-    socket.on('getSeats', data => {
-      console.log(data.concertId);
+    //setup
+    socket.on('setup', data => {
       request
         .getSeats(data.concertId)
         .then(seats => {
-          console.log('seats:', seats[1]);
+          //return seats
+          socket.emit('setup', seats);
+        })
+        .catch(err => {
+          console.log('err:', err);
+        });
+    });
+
+    //getSeats abfrage
+    socket.on('getSeats', data => {
+      request
+        .getSeats(data.concertId)
+        .then(seats => {
           //return seats
           socket.emit('seats', seats);
         })

@@ -43,34 +43,41 @@ sequelize
   })
   .then(result => {
     console.log('------------------');
-    console.log('Database syncronised');
-
+    console.log('\x1b[36m%s\x1b[0m', 'Database syncronised');
     return Sector.findAll();
   })
   .then(sectors => {
     if (sectors.length == 0) {
       Sector.create({
         price: 35
-      });
-      Sector.create({
-        price: 30
-      });
-      Sector.create({
-        price: 27
-      });
-      Sector.create({
-        price: 25
-      });
-      Sector.create({
-        price: 20
-      });
+      })
+        .then(sec => {
+          return Sector.create({
+            price: 30
+          });
+        })
+        .then(sec => {
+          return Sector.create({
+            price: 27
+          });
+        })
+        .then(sec => {
+          return Sector.create({
+            price: 25
+          });
+        })
+        .then(sec => {
+          return Sector.create({
+            price: 20
+          });
+        });
     }
   })
   .then(result => {
     // Port 8080 for Google App Engine
     app.set('port', process.env.PORT || 3000);
     const server = app.listen(app.get('port'), () => {
-      console.log('Listen on Port ' + app.get('port'));
+      console.log('\x1b[0m', 'Listen on Port ' + app.get('port'));
     });
 
     webSocket.run(server);
