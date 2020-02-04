@@ -43,3 +43,8 @@ rect,
 path {
   cursor: pointer;
 }
+
+/* Kartenbestellungs formular */
+.deleteBtn {
+  cursor: pointer;
+}

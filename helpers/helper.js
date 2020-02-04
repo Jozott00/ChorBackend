@@ -1,6 +1,6 @@
 //um code zu verstehen muss man den Sitzplan der Kirche ansehen
 exports.createSeats = (concert, sectors) => {
-  console.log(sectors);
+  // console.log(sectors);
   try {
     //Hauptschiffe Reihen
     for (i = 1; i <= 20; i++) {
@@ -171,7 +171,7 @@ exports.createSeats = (concert, sectors) => {
             sectors[sectorId - 1].includes('hls'),
           max_seats: 1,
           orders: 0,
-          generalId: 'hl-' + startChar0,
+          generalId: 'hls-' + startChar0,
           sectorId: sectorId
         })
         .then(row => {
@@ -188,7 +188,7 @@ exports.createSeats = (concert, sectors) => {
             sectors[sectorId - 1].includes('hrs'),
           max_seats: 1,
           orders: 0,
-          generalId: 'hr-' + startChar0,
+          generalId: 'hrs-' + startChar0,
           sectorId: sectorId
         })
         .then(row => {
@@ -220,7 +220,7 @@ exports.createSeats = (concert, sectors) => {
             sectors[sectorId - 1].includes('sls'),
           max_seats: 1,
           orders: 0,
-          generalId: 'sl-' + startChar,
+          generalId: 'sls-' + startChar,
           sectorId: sectorId
         })
         .then(row => {
@@ -237,7 +237,7 @@ exports.createSeats = (concert, sectors) => {
             sectors[sectorId - 1].includes('srs'),
           max_seats: 1,
           orders: 0,
-          generalId: 'sr-' + startChar,
+          generalId: 'srs-' + startChar,
           sectorId: sectorId
         })
         .then(row => {
@@ -249,7 +249,12 @@ exports.createSeats = (concert, sectors) => {
     }
 
     //Lodgenplätze (in zwei reihen)
-    for (i = 1; i <= 7; i++) {
+    let startChar1 = 'a';
+    for (
+      i = 1;
+      i <= 7;
+      i++, startChar1 = String.fromCharCode(startChar1.charCodeAt(0) + 1)
+    ) {
       let sectorId = 0;
 
       if (i <= 3) sectorId = 4;
@@ -262,10 +267,12 @@ exports.createSeats = (concert, sectors) => {
             sectors[sectorId - 1].includes('ll'),
           max_seats: 1,
           orders: 0,
-          generalId: 'll-' + (sectorId == 4 ? '1-' + i : '2-' + (i - 3)),
+          generalId: 'll-' + startChar1,
           sectorId: sectorId
         })
-        .then(row => {})
+        .then(row => {
+          console.log('Created seat ', row.generalId);
+        })
         .catch(err => {
           console.log('err:', err);
         });
@@ -277,7 +284,7 @@ exports.createSeats = (concert, sectors) => {
             sectors[sectorId - 1].includes('lr'),
           max_seats: 1,
           orders: 0,
-          generalId: 'lr-' + (sectorId == 4 ? '1-' + i : '2-' + (i - 3)),
+          generalId: 'lr-' + startChar1,
           sectorId: sectorId
         })
         .then(row => {
@@ -290,4 +297,13 @@ exports.createSeats = (concert, sectors) => {
   } catch (err) {
     console.log(err);
   }
+};
+
+exports.nl2br = (str, is_xhtml) => {
+  var breakTag =
+    is_xhtml || typeof is_xhtml === 'undefined' ? '<br ' + '/>' : '<br>';
+  return (str + '').replace(
+    /([^>\r\n]?)(\r\n|\n\r|\r|\n)/g,
+    '$1' + breakTag + '$2'
+  );
 };

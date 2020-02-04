@@ -6,7 +6,8 @@ block content
             div
                 h4.mb-1#lol #{concert.name}
                 h5.text-muted #{concert.componist}
-            a.btn.btn-light.btn-sm.lh-1.mb-4(style="max-height: 2rem" href=("/manage/concert/edit/" + concert.id)) Bearbeiten
+            if approval >= 10
+                a.btn.btn-light.btn-sm.lh-1.mb-4(style="max-height: 2rem" href=("/manage/concert/edit/" + concert.id)) Bearbeiten
             div.mx-3
                 p.text-muted Verkaufte Karten: 
                     span.font-weight-bold.ml-1 #{concert.sold}
@@ -21,6 +22,7 @@ block content
                     span.font-weight-bold #{moment(concert.sell_end).format('DD.MM.YYYY')}
 
         form(action=("update/" + concert.id), method="post")
+            input(type="hidden" value=csrfToken name="_csrf")
             table.table.text-center(rules="none").mt-4
                 div
                     tr
@@ -36,7 +38,8 @@ block content
                         th(scope="col") Tel.
                         th(scope="col") Email
                         th(scope="col")
-                            button.btn-white(type="submit") Speichern
+                            if approval >= 9
+                                button.btn-white(type="submit") Speichern
 
                 tbody.data
                     each buyer in buyers
@@ -53,13 +56,14 @@ block content
                             td #{buyer.firstname}
                             td #{buyer.phone}
                             td #{buyer.email}
-                            td
-                                //- label.label(for=("toggle" + buyer.id))
-                                //-     input(type="checkbox" name=("toggle" + buyer.id) id=("toggle" + buyer.id))
-                                label
-                                    input.conInput(type="checkbox", name=buyer.id)
-                                    img.toggle-item(id=("toggle" + buyer.id) data-id=buyer.id src=("/img/" + (!buyer.is_paid ? "check" : "close") + ".svg"), alt=buyer.is_paid, style="height: 17px")
-                                div.result
+                            if approval >= 10
+                                td
+                                    //- label.label(for=("toggle" + buyer.id))
+                                    //-     input(type="checkbox" name=("toggle" + buyer.id) id=("toggle" + buyer.id))
+                                    label
+                                        input.conInput(type="checkbox", name=buyer.id)
+                                        img.toggle-item(id=("toggle" + buyer.id) data-id=buyer.id src=("/img/" + (!buyer.is_paid ? "check" : "close") + ".svg"), alt=buyer.is_paid, style="height: 17px")
+                                    div.result
 
                         .modal.fade(id=("details" + buyer.id) tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true")
                             .modal-dialog.modal-dialog-centered(role="document")

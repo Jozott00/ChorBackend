@@ -11,17 +11,20 @@ html(lang="de")
         header
             nav.navbar.navbar-light.bg-light
                 ul.nav.nav-pills
-                    li.nav-item
-                        a.nav-link(href="/manage/", class=(path === "/" ? "active" : "")) Dashboard
-                    li.nav-item
-                        a.nav-link(href="/manage/concerts", class=(path === "/concerts" ? "active" : "")) Konzerte
-                    li.nav-item
-                        a.nav-link(href="/manage/chorsetting", class=(path === "/settings" ? "active" : "")) Chorverwaltung
+                    if approval >= 1
+                        li.nav-item
+                            a.nav-link(href="/manage/", class=(path === "/" ? "active" : "")) Dashboard
+                    if approval >= 6
+                        li.nav-item
+                            a.nav-link(href="/manage/concerts", class=(path === "/concerts" ? "active" : "")) Konzerte
+                    if approval >= 8
+                        li.nav-item
+                            a.nav-link(href="/manage/chorsetting", class=(path === "/settings" ? "active" : "")) Chorverwaltung
                 ul.nav.justify-content-end
                     li.nav-item
-                        a.nav-link.disabled #{username}
+                        a.nav-link.disabled #{email}
                     li.nav-item
-                        a.nav-link(href="/auth/logout") Logout
+                        a.nav-link(href="/logout") Logout
         block content
 
         script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js")

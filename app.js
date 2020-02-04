@@ -4,6 +4,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const sequelize = require('./utils/database');
 const path = require('path');
+const flash = require('connect-flash');
+const session = require('express-session');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const csrf = require('csurf');
+const bcrypt = require('bcryptjs');
 
 const webSocket = require('./controller/webSocket');
 const errorController = require('./controller/error');
@@ -14,8 +19,11 @@ const Ticket = require('./models/ticket');
 const Sector = require('./models/sector');
 const Row = require('./models/row');
 const Availability = require('./models/availability');
+const User = require('./models/user');
 
 const app = express();
+const csrfProtection = csrf();
+
 app.locals.moment = require('moment');
 
 app.set('view engine', 'pug');
@@ -24,8 +32,36 @@ app.set('views', 'views');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, '/public')));
 
+var sessionStore = new SequelizeStore({
+  db: sequelize
+});
+app.use(
+  session({
+    secret: 'ein sehr großes Geheimnis',
+    resave: false,
+    saveUninitialized: false,
+    store: sessionStore
+  })
+);
+sessionStore.sync();
+app.use(csrfProtection);
+app.use(flash());
+
+app.use((req, res, next) => {
+  res.locals.isLoggedIn = req.session.isLoggedIn;
+  res.locals.csrfToken = req.csrfToken();
+  if (req.session.user) {
+    res.locals.approval = req.session.user.approvalCode;
+    res.locals.email = req.session.user.email;
+  }
+  next();
+});
+
 const adminRoutes = require('./routes/admin');
 const userRoutes = require('./routes/user');
+const authRoutes = require('./routes/auth');
+
+app.use(authRoutes);
 app.use('/manage', adminRoutes);
 app.use(userRoutes);
 
@@ -70,8 +106,23 @@ sequelize
           return Sector.create({
             price: 20
           });
+        })
+        .catch(err => {
+          console.log(err);
         });
     }
+    return User.findByPk(1);
+  })
+  .then(user => {
+    if (user) return user;
+    return bcrypt.hash(process.env.ADMIN_PASS, 12).then(hashedPass => {
+      return User.create({
+        id: 1,
+        email: 'official@johannes-zottele.at',
+        password: hashedPass,
+        approvalCode: 15
+      });
+    });
   })
   .then(result => {
     // Port 8080 for Google App Engine

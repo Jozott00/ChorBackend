@@ -4,6 +4,7 @@ block content
     main.p-4
         h3 #{editing ? concert.name : "Neues Konzert Erstellen"}
         form.d-flex.flex-wrap.flex-row(action=editing ? "/manage/concert/edit/" + concert.id : "/manage/concerts/new", method="post")
+            input(type="hidden" value=csrfToken name="_csrf")
             div.m-3
                 .form-group.row
                     label.col-sm-4.col-form-label(for="name") Name

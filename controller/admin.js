@@ -144,7 +144,8 @@ exports.postNewConcert = (req, res, next) => {
   const sellEnd = req.body.sell_end;
   const location = req.body.location;
   const startTime = req.body.startTime;
-  const info = req.body.info;
+  let info = req.body.info;
+  info = helper.nl2br(info, false);
   let sectors = [[], [], [], [], []];
   let con;
 
@@ -273,8 +274,10 @@ exports.postConcertEdit = (req, res, next) => {
   const sellEnd = req.body.sell_end;
   const location = req.body.location;
   const startTime = req.body.startTime;
-  const info = req.body.info;
+  let info = req.body.info;
   let sectors = [[], [], [], [], []];
+
+  info = helper.nl2br(info, false);
 
   Object.keys(req.body).forEach(key => {
     const lastDigit = parseInt(key.substring(key.length - 1));
@@ -340,18 +343,7 @@ exports.postConcertEdit = (req, res, next) => {
       concert.rows.forEach(row => {
         //checkt ob sektor verfügbar ist
         let av = concert.availabilities.find(av => av.sectorId == row.sectorId);
-        let area;
-
-        //get right area (had problems cause e.g hls has the generalId hl-.. inside the row)
-        if (Number.isInteger(Number.parseInt(row.generalId.split('-')[1]))) {
-          area = row.generalId.split('-')[0];
-          // console.log('area:', area);
-        } else {
-          area = row.generalId.split('-')[0] + 's';
-          const s = row.generalId.split('-')[1];
-          // console.log('s:', s);
-          // console.log('isNumber', Number.isInteger(Number.parseInt(s)));
-        }
+        let area = row.generalId.split('-')[0];
 
         let isAv = av[area];
         if (isAv && row.orders < row.max_seats && av.is_available)
@@ -375,4 +367,8 @@ exports.postConcertEdit = (req, res, next) => {
         errMsg: err
       });
     });
+};
+
+exports.getNoApproval = (req, res, next) => {
+  res.render('admin/approval');
 };

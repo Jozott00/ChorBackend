@@ -13,11 +13,33 @@ exports.run = server => {
 
     //setup
     socket.on('setup', data => {
+      let seats;
       request
         .getSeats(data.concertId)
-        .then(seats => {
-          //return seats
-          socket.emit('setup', seats);
+        .then(_seats => {
+          seats = _seats;
+          return request.getSectors();
+        })
+        .then(sectors => {
+          const seatName = {
+            hl: 'Hauptschiff Links, Reihe',
+            hr: 'Haupschiff Rechts, Reihe',
+            sl: 'Seitenschiff Links, Reihe',
+            sr: 'Seitenschiff Rechts, Reihe',
+            hrs: 'Hauptschiff Rechts, Platz',
+            hls: 'Hauptschiff Links, Platz',
+            sls: 'Seitenschiff Links, Platz',
+            srs: 'Seitenschiff Rechts, Platz',
+            el: 'Empore Links, Platz',
+            er: 'Empore Rechts, Platz',
+            ll: 'Loge Links, Platz',
+            lr: 'Loge Rechts, Platz'
+          };
+          socket.emit('setup', {
+            seats: seats,
+            sectors: sectors,
+            seatName: seatName
+          });
         })
         .catch(err => {
           console.log('err:', err);

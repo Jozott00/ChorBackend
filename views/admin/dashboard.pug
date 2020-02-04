@@ -7,6 +7,7 @@ block content
             .card.flex-fill.m-2.shadow(style="width: 25rem; max-width: 50rem")
                 .card-body
                     .form
+                        input(type="hidden" value=csrfToken name="_csrf")
                         h5.card-title.mt-1.d-inline-block E-Mail versenden
                         .d-inline-block.float-right.mt-0
                             p.d-inline-block.mr-2 An:
@@ -21,13 +22,14 @@ block content
                                 input.form-control.mw-50(type="text")
                             textarea(name="content").textarea.mb-3
                         button.btn.btn-primary.btn-sm.px-4(type="submit") Senden
-            .card.flex-fill.m-2.shadow(style="width: 18rem;")
-                .card-body
-                    h5.card-title Aktuelle Konzerte
-                    each concert in concerts
-                        hr
-                        h5.card-title #{concert.name}
-                            h6.card-subtitle.mb-3.text-muted(style="font-size: 14px;") #{moment(concert.date).format('DD.MM.YYYY')}
-                            p.card-text Verkaufte Karten online: 
-                                span.badge.badge-primary.ml-2.p-2 #{concert.sold}
-                            a.btn.btn-primary.btn-sm.px-4(href=("/manage/concert/" + concert.id)) Ansehen...
+            if approval >= 6
+                .card.flex-fill.m-2.shadow(style="width: 18rem;")
+                    .card-body
+                        h5.card-title Aktuelle Konzerte
+                        each concert in concerts
+                            hr
+                            h5.card-title #{concert.name}
+                                h6.card-subtitle.mb-3.text-muted(style="font-size: 14px;") #{moment(concert.date).format('DD.MM.YYYY')}
+                                p.card-text Verkaufte Karten online: 
+                                    span.badge.badge-primary.ml-2.p-2 #{concert.sold}
+                                a.btn.btn-primary.btn-sm.px-4(href=("/manage/concert/" + concert.id)) Ansehen...

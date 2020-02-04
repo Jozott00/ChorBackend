@@ -92,6 +92,10 @@ label {
   margin: 0;
 }
 
+.navbar-light {
+  background-color: #f3f3f3 !important;
+}
+
 /* Additional classes */
 
 .lh-1 {
@@ -184,6 +188,14 @@ label {
   border: 0.5px solid gray;
   opacity: 0.5;
 }
+
+.logo {
+  color: black;
+  font-weight: bolder;
+}
+.logo:hover {
+  color: black;
+}
 /* Loading Indicator */
 
 .load {
@@ -264,3 +276,10 @@ label {
     transform: scale(1);
   }
 }
+
+/* Messages (error etc) */
+.msg {
+  margin-top: 5rem;
+}
+
+/* Clientside */

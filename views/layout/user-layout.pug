@@ -1,0 +1,25 @@
+html(lang="de")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title #{pageTitle}
+        link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous")
+        link(rel="stylesheet", href="/css/main.css")
+        block style
+    body
+        header
+            nav.navbar.navbar-light.bg-light
+                ul.nav.nav-pills
+                    li.nav-item 
+                        a.nav-link(href="http://chor.kalvarienbergkirche.at" class='logo') Chor der Kalvarienbergkirche
+                    li.nav-item
+                        a.nav-link(href="/", class=(path === "/concerts" ? "active" : "")) Konzerte
+                
+              
+        block content
+
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js")
+        script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js")
+        script(src="/js/main.js")
+        block scripts

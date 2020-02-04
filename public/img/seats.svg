@@ -1110,9 +1110,9 @@
 			<line class="st25" x1="367.6" y1="232.1" x2="367.6" y2="194.3"/>
 		</g>
 		<text transform="matrix(6.123234e-17 -1 1 6.123234e-17 24.8988 184.8453)" class="st26 st17">Empore Links</text>
-		<text transform="matrix(1 0 0 1 20.1232 40.5462)" class="st26 st17">Lodge Links</text>
+		<text transform="matrix(1 0 0 1 20.1232 40.5462)" class="st26 st17">Loge Links</text>
 		<text transform="matrix(6.123234e-17 1 -1 6.123234e-17 400.127 120.402)" class="st26 st17">Empore Rechts</text>
-		<text transform="matrix(1 0 0 1 348.5764 40.5461)" class="st26 st17">Lodge Rechts</text>
+		<text transform="matrix(1 0 0 1 348.5764 40.5461)" class="st26 st17">Loge Rechts</text>
 		<text transform="matrix(1 0 0 1 191.9468 60.7717)" class="st27 st17">Orchester</text>
 		<text transform="matrix(1 0 0 1 187.1688 203.4321)" class="st26 st17">Hauptschiff</text>
 		<text transform="matrix(1 0 0 1 143.984 123.7753)" class="st26 st18">1</text>
@@ -1182,43 +1182,43 @@
 	<path data-toggle="popover"
         data-trigger="hover" data-content="Some content inside the popover" id="hl-1" class="st31" d="M199.1,219c0,0-8.5,0.6-18.6-0.5c-10.3-1.2-20.7-7.3-20.7-7.3l4.9-7.7c0,0,5.9,4.5,17,6.3
 		c11.5,1.9,17.4,0.5,17.4,0.5L199.1,219z"/>
-	<rect id="hl-u" x="135.5" y="428" class="st28" width="9.8" height="9.8"/>
-	<rect id="hl-t" x="135.5" y="418.1" class="st28" width="9.8" height="9.8"/>
-	<rect id="hl-s" x="135.5" y="408.2" class="st28" width="9.8" height="9.8"/>
-	<rect id="hl-r" x="135.5" y="398.4" class="st28" width="9.8" height="9.8"/>
-	<rect id="hl-q" x="135.5" y="388.6" class="st28" width="9.8" height="9.8"/>
-	<rect id="hl-p" x="135.5" y="378.8" class="st28" width="9.8" height="9.8"/>
-	<rect id="hl-o" x="135.5" y="369" class="st30" width="9.8" height="9.8"/>
-	<rect id="hl-n" x="135.5" y="359.2" class="st30" width="9.8" height="9.8"/>
-	<rect id="hl-m" x="135.5" y="349.4" class="st30" width="9.8" height="9.8"/>
-	<rect id="hl-l" x="135.5" y="339.5" class="st30" width="9.8" height="9.8"/>
-	<rect id="hl-k" x="135.5" y="329.7" class="st30" width="9.8" height="9.8"/>
-	<rect id="hl-j" x="135.5" y="319.9" class="st30" width="9.8" height="9.8"/>
-	<rect id="hl-i" x="135.5" y="310.1" class="st30" width="9.8" height="9.8"/>
-	<rect id="hl-h" x="135.5" y="300.3" class="st30" width="9.8" height="9.8"/>
-	<rect id="hl-g" x="135.5" y="290.4" class="st30" width="9.8" height="9.8"/>
-	<rect id="hl-f" x="135.5" y="280.5" class="st30" width="9.8" height="9.8"/>
-	<rect id="hl-e" x="135.5" y="270.7" class="st30" width="9.8" height="9.8"/>
-	<rect id="hl-d" x="135.5" y="260.8" class="st30" width="9.8" height="9.8"/>
-	<rect id="hl-c" x="135.5" y="251" class="st30" width="9.8" height="9.8"/>
-	<rect id="hl-b" x="135.5" y="241.1" class="st30" width="9.8" height="9.8"/>
-	<rect id="hl-a" x="135.5" y="231.3" class="st30" width="9.8" height="9.8"/>
-	<rect id="sl-p" x="103.6" y="105.6" class="st28" width="9.8" height="9.8"/>
-	<rect id="sl-o" x="103.6" y="95.8" class="st28" width="9.8" height="9.8"/>
-	<rect id="sl-n" x="113.5" y="105.5" class="st29" width="9.8" height="9.8"/>
-	<rect id="sl-m" x="113.5" y="95.7" class="st29" width="9.8" height="9.8"/>
-	<rect id="sl-l" x="123.3" y="105.5" class="st30" width="9.8" height="9.8"/>
-	<rect id="sl-k" x="123.3" y="95.7" class="st30" width="9.8" height="9.8"/>
-	<rect id="sl-j" x="71.4" y="227.6" class="st29" width="9.8" height="9.8"/>
-	<rect id="sl-i" x="81.3" y="227.6" class="st29" width="9.8" height="9.8"/>
-	<rect id="sl-h" x="57.3" y="217.7" class="st30" width="9.8" height="9.8"/>
-	<rect id="sl-g" x="67.1" y="217.8" class="st30" width="9.8" height="9.8"/>
-	<rect id="sl-f" x="76.9" y="217.8" class="st30" width="9.8" height="9.8"/>
-	<rect id="sl-e" x="86.7" y="217.8" class="st30" width="9.8" height="9.8"/>
-	<rect id="sl-d" x="96.6" y="217.8" class="st30" width="9.8" height="9.8"/>
-	<rect id="sl-c" x="106.5" y="217.8" class="st30" width="9.8" height="9.8"/>
-	<rect id="sl-b" x="116.3" y="217.8" class="st30" width="9.8" height="9.8"/>
-	<rect id="sl-a" x="126.1" y="217.8" class="st30" width="9.8" height="9.8"/>
+	<rect id="hls-u" x="135.5" y="428" class="st28" width="9.8" height="9.8"/>
+	<rect id="hls-t" x="135.5" y="418.1" class="st28" width="9.8" height="9.8"/>
+	<rect id="hls-s" x="135.5" y="408.2" class="st28" width="9.8" height="9.8"/>
+	<rect id="hls-r" x="135.5" y="398.4" class="st28" width="9.8" height="9.8"/>
+	<rect id="hls-q" x="135.5" y="388.6" class="st28" width="9.8" height="9.8"/>
+	<rect id="hls-p" x="135.5" y="378.8" class="st28" width="9.8" height="9.8"/>
+	<rect id="hls-o" x="135.5" y="369" class="st30" width="9.8" height="9.8"/>
+	<rect id="hls-n" x="135.5" y="359.2" class="st30" width="9.8" height="9.8"/>
+	<rect id="hls-m" x="135.5" y="349.4" class="st30" width="9.8" height="9.8"/>
+	<rect id="hls-l" x="135.5" y="339.5" class="st30" width="9.8" height="9.8"/>
+	<rect id="hls-k" x="135.5" y="329.7" class="st30" width="9.8" height="9.8"/>
+	<rect id="hls-j" x="135.5" y="319.9" class="st30" width="9.8" height="9.8"/>
+	<rect id="hls-i" x="135.5" y="310.1" class="st30" width="9.8" height="9.8"/>
+	<rect id="hls-h" x="135.5" y="300.3" class="st30" width="9.8" height="9.8"/>
+	<rect id="hls-g" x="135.5" y="290.4" class="st30" width="9.8" height="9.8"/>
+	<rect id="hls-f" x="135.5" y="280.5" class="st30" width="9.8" height="9.8"/>
+	<rect id="hls-e" x="135.5" y="270.7" class="st30" width="9.8" height="9.8"/>
+	<rect id="hls-d" x="135.5" y="260.8" class="st30" width="9.8" height="9.8"/>
+	<rect id="hls-c" x="135.5" y="251" class="st30" width="9.8" height="9.8"/>
+	<rect id="hls-b" x="135.5" y="241.1" class="st30" width="9.8" height="9.8"/>
+	<rect id="hls-a" x="135.5" y="231.3" class="st30" width="9.8" height="9.8"/>
+	<rect id="sls-p" x="103.6" y="105.6" class="st28" width="9.8" height="9.8"/>
+	<rect id="sls-o" x="103.6" y="95.8" class="st28" width="9.8" height="9.8"/>
+	<rect id="sls-n" x="113.5" y="105.5" class="st29" width="9.8" height="9.8"/>
+	<rect id="sls-m" x="113.5" y="95.7" class="st29" width="9.8" height="9.8"/>
+	<rect id="sls-l" x="123.3" y="105.5" class="st30" width="9.8" height="9.8"/>
+	<rect id="sls-k" x="123.3" y="95.7" class="st30" width="9.8" height="9.8"/>
+	<rect id="sls-j" x="71.4" y="227.6" class="st29" width="9.8" height="9.8"/>
+	<rect id="sls-i" x="81.3" y="227.6" class="st29" width="9.8" height="9.8"/>
+	<rect id="sls-h" x="57.3" y="217.7" class="st30" width="9.8" height="9.8"/>
+	<rect id="sls-g" x="67.1" y="217.8" class="st30" width="9.8" height="9.8"/>
+	<rect id="sls-f" x="76.9" y="217.8" class="st30" width="9.8" height="9.8"/>
+	<rect id="sls-e" x="86.7" y="217.8" class="st30" width="9.8" height="9.8"/>
+	<rect id="sls-d" x="96.6" y="217.8" class="st30" width="9.8" height="9.8"/>
+	<rect id="sls-c" x="106.5" y="217.8" class="st30" width="9.8" height="9.8"/>
+	<rect id="sls-b" x="116.3" y="217.8" class="st30" width="9.8" height="9.8"/>
+	<rect id="sls-a" x="126.1" y="217.8" class="st30" width="9.8" height="9.8"/>
 	<rect id="el-16" x="83.6" y="255.9" class="st28" width="9.8" height="9.8"/>
 	<rect id="el-15" x="73.8" y="255.9" class="st28" width="9.8" height="9.8"/>
 	<rect id="el-14" x="63.9" y="255.9" class="st28" width="9.8" height="9.8"/>
@@ -1235,13 +1235,13 @@
 	<rect id="el-3" x="44.4" y="116.1" class="st28" width="9.8" height="9.8"/>
 	<rect id="el-2" x="44.4" y="106.2" class="st28" width="9.8" height="9.8"/>
 	<rect id="el-1" x="44.4" y="96.3" class="st28" width="9.8" height="9.8"/>
-	<rect id="ll-1-1" x="99.7" y="20.9" class="st29" width="9.8" height="9.8"/>
-	<rect id="ll-1-2" x="99.7" y="30.8" class="st29" width="9.8" height="9.8"/>
-	<rect id="ll-1-3" x="99.7" y="40.6" class="st29" width="9.8" height="9.8"/>
-	<rect id="ll-2-1" x="89.8" y="16.3" class="st28" width="9.8" height="9.8"/>
-	<rect id="ll-2-2" x="89.8" y="26.1" class="st28" width="9.8" height="9.8"/>
-	<rect id="ll-2-3" x="89.8" y="35.9" class="st28" width="9.8" height="9.8"/>
-	<rect id="ll-2-4" x="89.8" y="45.8" class="st28" width="9.8" height="9.8"/>
+	<rect id="ll-a" x="99.7" y="20.9" class="st29" width="9.8" height="9.8"/>
+	<rect id="ll-b" x="99.7" y="30.8" class="st29" width="9.8" height="9.8"/>
+	<rect id="ll-c" x="99.7" y="40.6" class="st29" width="9.8" height="9.8"/>
+	<rect id="ll-d" x="89.8" y="16.3" class="st28" width="9.8" height="9.8"/>
+	<rect id="ll-e" x="89.8" y="26.1" class="st28" width="9.8" height="9.8"/>
+	<rect id="ll-f" x="89.8" y="35.9" class="st28" width="9.8" height="9.8"/>
+	<rect id="ll-g" x="89.8" y="45.8" class="st28" width="9.8" height="9.8"/>
 	<path id="sl-6" class="st29" d="M76.6,125.5c0,0-7,16.4-7,34.5s7,37.7,7,37.7l8.8,0.4c0,0-7.4-19.8-7.4-38.1
 		c0-15.7,7.2-34.2,7.2-34.2L76.6,125.5z"/>
 	<path id="sl-7" class="st28" d="M60,154.3c0,0-1,5.4,1,20.8c2.1,15.9,5,22.7,5,22.7l7.8,0.2c0,0-2.7-4.9-5.4-23
@@ -1281,43 +1281,43 @@
 		c-11.5,1.9-20.5,0.8-20.5,0.8V230.9z"/>
 	<path id="hr-1" class="st31" d="M226.2,219c0,0,8.5,0.6,18.6-0.5c10.3-1.2,20.7-7.3,20.7-7.3l-4.9-7.7c0,0-5.9,4.5-17,6.3
 		c-11.5,1.9-17.4,0.5-17.4,0.5L226.2,219z"/>
-	<rect id="hr-u" x="278" y="428" class="st28" width="9.8" height="9.8"/>
-	<rect id="hr-t" x="278" y="418.1" class="st28" width="9.8" height="9.8"/>
-	<rect id="hr-s" x="278" y="408.3" class="st28" width="9.8" height="9.8"/>
-	<rect id="hr-r" x="278" y="398.5" class="st28" width="9.8" height="9.8"/>
-	<rect id="hr-q" x="278" y="388.7" class="st28" width="9.8" height="9.8"/>
-	<rect id="hr-p" x="278" y="378.8" class="st28" width="9.8" height="9.8"/>
-	<rect id="hr-o" x="278" y="369" class="st30" width="9.8" height="9.8"/>
-	<rect id="hr-n" x="278" y="359.2" class="st30" width="9.8" height="9.8"/>
-	<rect id="hr-m" x="278" y="349.3" class="st30" width="9.8" height="9.8"/>
-	<rect id="hr-l" x="278" y="339.6" class="st30" width="9.8" height="9.8"/>
-	<rect id="hr-k" x="278" y="329.8" class="st30" width="9.8" height="9.8"/>
-	<rect id="hr-j" x="278" y="320" class="st30" width="9.8" height="9.8"/>
-	<rect id="hr-i" x="278" y="310.2" class="st30" width="9.8" height="9.8"/>
-	<rect id="hr-h" x="278" y="300.2" class="st30" width="9.8" height="9.8"/>
-	<rect id="hr-g" x="278" y="290.5" class="st30" width="9.8" height="9.8"/>
-	<rect id="hr-f" x="278" y="280.6" class="st30" width="9.8" height="9.8"/>
-	<rect id="hr-e" x="278" y="270.8" class="st30" width="9.8" height="9.8"/>
-	<rect id="hr-d" x="278" y="260.9" class="st30" width="9.8" height="9.8"/>
-	<rect id="hr-c" x="278" y="251.1" class="st30" width="9.8" height="9.8"/>
-	<rect id="hr-b" x="278" y="241.2" class="st30" width="9.8" height="9.8"/>
-	<rect id="hr-a" x="278" y="231.3" class="st30" width="9.8" height="9.8"/>
-	<rect id="sr-p" x="309.9" y="105.6" class="st28" width="9.8" height="9.8"/>
-	<rect id="sr-o" x="309.9" y="95.8" class="st28" width="9.8" height="9.8"/>
-	<rect id="sr-n" x="300.1" y="105.5" class="st29" width="9.8" height="9.8"/>
-	<rect id="sr-m" x="300.1" y="95.7" class="st29" width="9.8" height="9.8"/>
-	<rect id="sr-l" x="290.3" y="105.6" class="st30" width="9.8" height="9.8"/>
-	<rect id="sr-k" x="290.2" y="95.7" class="st30" width="9.8" height="9.8"/>
-	<rect id="sr-j" x="342.1" y="227.6" class="st29" width="9.8" height="9.8"/>
-	<rect id="sr-i" x="332.2" y="227.6" class="st29" width="9.8" height="9.8"/>
-	<rect id="sr-h" x="356.2" y="217.8" class="st30" width="9.8" height="9.8"/>
-	<rect id="sr-g" x="346.4" y="217.8" class="st30" width="9.8" height="9.8"/>
-	<rect id="sr-f" x="336.5" y="217.8" class="st30" width="9.8" height="9.8"/>
-	<rect id="sr-e" x="326.7" y="217.8" class="st30" width="9.8" height="9.8"/>
-	<rect id="sr-d" x="316.8" y="217.8" class="st30" width="9.8" height="9.8"/>
-	<rect id="sr-c" x="307" y="217.8" class="st30" width="9.8" height="9.8"/>
-	<rect id="sr-b" x="297.1" y="217.8" class="st30" width="9.8" height="9.8"/>
-	<rect id="sr-a" x="287.3" y="217.8" class="st30" width="9.8" height="9.8"/>
+	<rect id="hrs-u" x="278" y="428" class="st28" width="9.8" height="9.8"/>
+	<rect id="hrs-t" x="278" y="418.1" class="st28" width="9.8" height="9.8"/>
+	<rect id="hrs-s" x="278" y="408.3" class="st28" width="9.8" height="9.8"/>
+	<rect id="hrs-r" x="278" y="398.5" class="st28" width="9.8" height="9.8"/>
+	<rect id="hrs-q" x="278" y="388.7" class="st28" width="9.8" height="9.8"/>
+	<rect id="hrs-p" x="278" y="378.8" class="st28" width="9.8" height="9.8"/>
+	<rect id="hrs-o" x="278" y="369" class="st30" width="9.8" height="9.8"/>
+	<rect id="hrs-n" x="278" y="359.2" class="st30" width="9.8" height="9.8"/>
+	<rect id="hrs-m" x="278" y="349.3" class="st30" width="9.8" height="9.8"/>
+	<rect id="hrs-l" x="278" y="339.6" class="st30" width="9.8" height="9.8"/>
+	<rect id="hrs-k" x="278" y="329.8" class="st30" width="9.8" height="9.8"/>
+	<rect id="hrs-j" x="278" y="320" class="st30" width="9.8" height="9.8"/>
+	<rect id="hrs-i" x="278" y="310.2" class="st30" width="9.8" height="9.8"/>
+	<rect id="hrs-h" x="278" y="300.2" class="st30" width="9.8" height="9.8"/>
+	<rect id="hrs-g" x="278" y="290.5" class="st30" width="9.8" height="9.8"/>
+	<rect id="hrs-f" x="278" y="280.6" class="st30" width="9.8" height="9.8"/>
+	<rect id="hrs-e" x="278" y="270.8" class="st30" width="9.8" height="9.8"/>
+	<rect id="hrs-d" x="278" y="260.9" class="st30" width="9.8" height="9.8"/>
+	<rect id="hrs-c" x="278" y="251.1" class="st30" width="9.8" height="9.8"/>
+	<rect id="hrs-b" x="278" y="241.2" class="st30" width="9.8" height="9.8"/>
+	<rect id="hrs-a" x="278" y="231.3" class="st30" width="9.8" height="9.8"/>
+	<rect id="srs-p" x="309.9" y="105.6" class="st28" width="9.8" height="9.8"/>
+	<rect id="srs-o" x="309.9" y="95.8" class="st28" width="9.8" height="9.8"/>
+	<rect id="srs-n" x="300.1" y="105.5" class="st29" width="9.8" height="9.8"/>
+	<rect id="srs-m" x="300.1" y="95.7" class="st29" width="9.8" height="9.8"/>
+	<rect id="srs-l" x="290.3" y="105.6" class="st30" width="9.8" height="9.8"/>
+	<rect id="srs-k" x="290.2" y="95.7" class="st30" width="9.8" height="9.8"/>
+	<rect id="srs-j" x="342.1" y="227.6" class="st29" width="9.8" height="9.8"/>
+	<rect id="srs-i" x="332.2" y="227.6" class="st29" width="9.8" height="9.8"/>
+	<rect id="srs-h" x="356.2" y="217.8" class="st30" width="9.8" height="9.8"/>
+	<rect id="srs-g" x="346.4" y="217.8" class="st30" width="9.8" height="9.8"/>
+	<rect id="srs-f" x="336.5" y="217.8" class="st30" width="9.8" height="9.8"/>
+	<rect id="srs-e" x="326.7" y="217.8" class="st30" width="9.8" height="9.8"/>
+	<rect id="srs-d" x="316.8" y="217.8" class="st30" width="9.8" height="9.8"/>
+	<rect id="srs-c" x="307" y="217.8" class="st30" width="9.8" height="9.8"/>
+	<rect id="srs-b" x="297.1" y="217.8" class="st30" width="9.8" height="9.8"/>
+	<rect id="srs-a" x="287.3" y="217.8" class="st30" width="9.8" height="9.8"/>
 	<rect id="er-16" x="331.9" y="255.9" class="st28" width="9.8" height="9.8"/>
 	<rect id="er-15" x="341.7" y="256" class="st28" width="9.8" height="9.8"/>
 	<rect id="er-14" x="351.5" y="255.9" class="st28" width="9.8" height="9.8"/>
@@ -1334,13 +1334,13 @@
 	<rect id="er-3" x="369" y="116" class="st28" width="9.8" height="9.8"/>
 	<rect id="er-2" x="369" y="106.2" class="st28" width="9.8" height="9.8"/>
 	<rect id="er-1" x="369" y="96.4" class="st28" width="9.8" height="9.8"/>
-	<rect id="lr-1-1" x="315.8" y="20.9" class="st29" width="9.8" height="9.8"/>
-	<rect id="lr-1-2" x="315.8" y="30.7" class="st29" width="9.8" height="9.8"/>
-	<rect id="lr-1-3" x="315.8" y="40.5" class="st29" width="9.8" height="9.8"/>
-	<rect id="lr-2-1" x="325.6" y="16.3" class="st28" width="9.8" height="9.8"/>
-	<rect id="lr-2-2" x="325.6" y="26.2" class="st28" width="9.8" height="9.8"/>
-	<rect id="lr-2-3" x="325.6" y="36" class="st28" width="9.8" height="9.8"/>
-	<rect id="lr-2-4" x="325.6" y="45.8" class="st28" width="9.8" height="9.8"/>
+	<rect id="lr-a" x="315.8" y="20.9" class="st29" width="9.8" height="9.8"/>
+	<rect id="lr-b" x="315.8" y="30.7" class="st29" width="9.8" height="9.8"/>
+	<rect id="lr-c" x="315.8" y="40.5" class="st29" width="9.8" height="9.8"/>
+	<rect id="lr-d" x="325.6" y="16.3" class="st28" width="9.8" height="9.8"/>
+	<rect id="lr-e" x="325.6" y="26.2" class="st28" width="9.8" height="9.8"/>
+	<rect id="lr-f" x="325.6" y="36" class="st28" width="9.8" height="9.8"/>
+	<rect id="lr-g" x="325.6" y="45.8" class="st28" width="9.8" height="9.8"/>
 	<path id="sr-6" class="st29" d="M347.6,125.5c0,0,7,16.4,7,34.5s-7,37.7-7,37.7l-8.8,0.4c0,0,7.4-19.8,7.4-38.1
 		c0-15.7-7.2-34.2-7.2-34.2L347.6,125.5z"/>
 	<path id="sr-5" class="st30" d="M334.4,125.5c0,0,7,16.4,7,34.5s-7,37.7-7,37.7l-8.8,0.4c0,0,7.4-19.8,7.4-38.1

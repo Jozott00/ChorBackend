@@ -1,7 +1,7 @@
 //create popover
 function popover() {
   const popover = $('#seatPopover');
-  $('[data-toggle="popover"]').hover(
+  $('[data-toggle2="popover"]').hover(
     function() {
       const offset = $(this).offset();
 

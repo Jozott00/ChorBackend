@@ -1,28 +1,46 @@
-extends ../layout/main-layout.pug
+extends ../layout/user-layout.pug
 
 block style
     link(rel="stylesheet", href="/css/order.css")
 
 block content
-    p#seatPopover.btn.shadow 10/20
-    div#map
 
-    each seat in seats
-        //- .modal.fade(id=("seat_" + seat.generalId) tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true")
-        //-                     .modal-dialog.modal-dialog-centered(role="document")
-        //-                         .modal-content
-        //-                             .modal-header
-        //-                                 //- .d-flex
-        //-                                 //-     .modal-title.font-weight-bold #{buyer.firstname + " " + buyer.name}
-        //-                                 //-     p.ml-2 € #{buyer.total},-
-        //-                                 //- button.close(type="button" data-dismiss="modal" aria-label="Close")
-        //-                                 //-     span(aria-hidden="true") &times;
-        //-                             .modal-body
-        //-                                 .container-fluid.text-center
-                                            
+    #alertBox
+
+    p#seatPopover.btn.shadow 10/20
+    .d-flex
+        div#map
+        div.mt-5
+            .mb-4
+                .d-flex
+                    div
+                        h1.h1 #{concert.name}
+                        h3.h3.text-muted #{concert.componist}
+                    div 
+                        
+
+            .mb-4
+                h2.h2 Kartenbestellung
+                p Bitte wählen sie die gewünschten Sitzplätze aus und wählen Sie die gewünschte Zahlungsmethode aus.
+
+                form(action="/order/1", method="post")
+                    input(type="hidden" value=csrfToken name="_csrf")
+                    .card.m-2.shadow.my-4
+                        .card-body.container
+                            #ticketList
+                            
+                            hr
+                            .sum.row
+                                .col-1
+                                .col-1
+                                .col-7  Gesamtsumme aller Karten:
+                                .col-2#totalPrice 0€
+
 
 block scripts
     script(src="https://cdn.jsdelivr.net/npm/socket.io-client@2/dist/socket.io.js")
+    script(src="/js/globalDeclaration.js")
     script(src="/js/popover.js")
+    script(src="/js/modules.js")
     script(src="/js/imgMap.js")
 

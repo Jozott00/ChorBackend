@@ -1,0 +1,39 @@
+extends ../layout/user-layout.pug
+
+block style
+
+block content
+    main.p-3
+        .d-flex.pl-4.mb-4
+            h3.align-self-center.m-0 Alle Konzerte
+        .d-flex.flex-wrap
+            each concert in concerts
+                .card.flex-fill.m-2.shadow(style="width: 18rem;")
+                    a.fdec(href=("/concert/" + concert.id))
+                        .card-body
+                            h5.card-title #{concert.name}
+                            h6.card-subtitle.mb-2.text-muted #{concert.componist}
+                            .d-flex
+                                div
+                                    p.card-text Datum:
+                                        span.badge #{moment(concert.date).format('DD.MM.YYYY')}
+                                    .d-flex.flex-wrap.mb-2
+                                        p Uhrzeit:
+                                            span.badge.mx-1 #{concert.info.time}
+                                        p Ort:
+                                            span.badge #{concert.info.location}
+                                    .d-flex
+                                        p.card-text Verkauf:
+                                            span.badge.mx-1 bis #{moment(concert.sell_end).format('DD.MM.YYYY')}
+                                        p.card-text Auslastung:
+                                            span.badge #{concert.ticketsSold / 457 * 100} %
+
+                                    .pt-3
+                                        a.card-link.pt-5(href=("/concert/" + concert.id)) Karten kaufen
+                                    
+                                .pl-4
+                                    p.card-text !{concert.info.info}
+                                
+            
+
+block scripts

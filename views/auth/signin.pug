@@ -1,0 +1,22 @@
+extends ../layout/auth-layout.pug
+
+
+block content
+
+    form.form-signin(action="/signin" method="POST")
+        if errorMsg 
+                .alert.alert-danger #{errorMsg}
+        if successMsg 
+                .alert.alert-success #{successMsg}
+        img.mb-4(src="http://chor.kalvarienbergkirche.at/img/logo_menu.png", alt="Chor der Kalvarienbergkirche", height="100px")
+        h1.h3.mb-3.font-weight-normal Bitte logge dich ein.
+        label.sr-only(for="inputEmail") Email-Adresse
+        input.form-control#inputEmail(type="email" name="email" placeholder="Email-Adresse" required autofocus)
+        label.sr-only(for="inputPassword") Passwort
+        input.form-control#inputPassword(type="password" name="password" placeholder="Passwort" required)
+        button.btn.btn-lg.btn-primary.btn-block(type="submit") Login
+        p.mt-5.mb-1.text-muted
+            a(href='/signup') Noch nicht registriert?
+        p.mt-1.mb-3.text-muted
+            a(href='/auth/forgotpassword') Passwort vergessen?
+        input(type="hidden" value=csrfToken name="_csrf")

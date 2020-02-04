@@ -1,8 +1,6 @@
 const Sequ = require('sequelize');
 const sequelize = require('../utils/database');
 
-const date = new Date(2019, 11, 12);
-
 const Concert = sequelize.define('concert', {
   id: {
     type: Sequ.INTEGER,
@@ -21,6 +19,10 @@ const Concert = sequelize.define('concert', {
     defaultValue: 0
   },
   ordered: {
+    type: Sequ.INTEGER,
+    defaultValue: 0
+  },
+  ticketsSold: {
     type: Sequ.INTEGER,
     defaultValue: 0
   },
