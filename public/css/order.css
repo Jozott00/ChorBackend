@@ -1,7 +1,7 @@
 #map {
-  width: 50vw;
-  padding: 2rem;
-  height: 100vh;
+  /* width: calc((100vh - 56px) * 0.88); */
+  min-width: calc((100vh - 56px) * 0.88);
+  /* padding: 2rem 2rem 2rem 2rem; */
 }
 
 .selected {
@@ -47,4 +47,19 @@ path {
 /* Kartenbestellungs formular */
 .deleteBtn {
   cursor: pointer;
+}
+
+.orderControl {
+  margin-top: 7em;
+  margin-left: 2em;
+  min-width: 610px;
+  background-color: white;
+}
+
+#scrollHint {
+  z-index: -5;
+  position: absolute;
+  top: 50vh;
+  left: calc(100vh * 0.88 - 56px + 2rem);
+  height: 50px;
 }

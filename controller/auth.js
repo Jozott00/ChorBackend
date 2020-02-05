@@ -1,16 +1,14 @@
 const bcrypt = require('bcryptjs');
 const mail = require('../utils/mailService');
 
+const help = require('../helpers/helper');
+
 const User = require('../models/user');
 
 exports.getSignin = (req, res, next) => {
-  let errMsg = req.flash('error');
-  if (errMsg.length > 0) errMsg = errMsg[0];
-  else errMsg = null;
+  let errMsg = help.flashMsg(req, 'error');
 
-  let succMsg = req.flash('success');
-  if (succMsg.length > 0) succMsg = succMsg[0];
-  else succMsg = null;
+  let succMsg = help.flashMsg(req, 'success');
 
   res.render('auth/signin', {
     errorMsg: errMsg,
@@ -48,13 +46,8 @@ exports.postSignin = (req, res, next) => {
 };
 
 exports.getSignup = (req, res, next) => {
-  let msg = req.flash('error');
-  console.log('msg:', msg);
+  let msg = help.flashMsg(req, 'error');
 
-  if (msg.length > 0) msg = msg[0];
-  else msg = null;
-
-  console.log('msg:', req.flash('error'));
   res.render('auth/signup', {
     errorMsg: msg
   });

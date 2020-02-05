@@ -307,3 +307,11 @@ exports.nl2br = (str, is_xhtml) => {
     '$1' + breakTag + '$2'
   );
 };
+
+exports.flashMsg = (req, title) => {
+  let msg = req.flash(title);
+  if (msg.length > 0) msg = msg[0];
+  else msg = null;
+
+  return msg;
+};

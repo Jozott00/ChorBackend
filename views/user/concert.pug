@@ -4,38 +4,64 @@ block style
     link(rel="stylesheet", href="/css/order.css")
 
 block content
+    main(style="padding-top: 56px")
+        if errorMsg 
+                .alert.alert-danger #{errorMsg}
 
-    #alertBox
+        #alertBox
+        #scrollHint.d-flex
+            p
+                span.h1.align-middle ↓  
+                span Scroll hinunter für die Kartenbestellung
 
-    p#seatPopover.btn.shadow 10/20
-    .d-flex
-        div#map
-        div.mt-5
-            .mb-4
-                .d-flex
-                    div
-                        h1.h1 #{concert.name}
-                        h3.h3.text-muted #{concert.componist}
-                    div 
-                        
 
-            .mb-4
-                h2.h2 Kartenbestellung
-                p Bitte wählen sie die gewünschten Sitzplätze aus und wählen Sie die gewünschte Zahlungsmethode aus.
 
-                form(action="/order/1", method="post")
-                    input(type="hidden" value=csrfToken name="_csrf")
-                    .card.m-2.shadow.my-4
-                        .card-body.container
-                            #ticketList
-                            
-                            hr
-                            .sum.row
-                                .col-1
-                                .col-1
-                                .col-7  Gesamtsumme aller Karten:
-                                .col-2#totalPrice 0€
+        p#seatPopover.btn.shadow 10/20
+        .d-flex.flex-wrap
+            #map
+            .orderControl
+                .mb-4
+                    .d-flex
+                        div
+                            h1.h1 #{concert.name}
+                            h3.h3.text-muted #{concert.componist}
+                        div 
 
+
+                .mb-4
+                    h2.h2 Kartenbestellung
+                    p Bitte wählen sie die gewünschten Sitzplätze aus und füllen sie die Inforamtionsfelder aus.
+
+                    form(action='/order/' + concert.id , method="post")
+                        input(type="hidden" value=csrfToken name="_csrf")
+                        .card.m-2.shadow.my-4
+                            .card-body.container
+                                #ticketList
+                                
+                                hr
+                                .sum.row
+                                    .col-1
+                                    .col-1
+                                    .col-7  Gesamtsumme aller Karten:
+                                    .col-2#totalPrice € 0 ,-
+                        .card.m-2.shadow.my-4
+                            .card-body.container
+                                .row
+                                    .col-6
+                                        //- label.sr-only(for="email") Vorname
+                                        input.form-control#inputFirstname(type="text" name="firstname" placeholder="Vorname" value="Johannes" required autofocus)
+                                    .col-6
+                                        //- label.sr-only(for="lastname") Nachname
+                                        input.form-control#inputPassword(type="text" name="lastname" placeholder="Nachname" value="Zottele" required)
+                                .row.my-3
+                                    .col-6
+                                        //- label.sr-only(for="email") Email-Adresse
+                                        input.form-control#inputEmail(type="email" name="email" placeholder="Email-Adresse" value="private@johannes-zottele.at" required autofocus)
+                                    .col-6
+                                        //- label.sr-only(for="tel") Telefon
+                                        input.form-control#inputTel(type="tel" name="tel" placeholder="Telefon" value="+436801234904" required)        
+                        .text-center
+                                button.btn.btn-lg.btn-primary.shadow(type="submit") Bestellen
 
 block scripts
     script(src="https://cdn.jsdelivr.net/npm/socket.io-client@2/dist/socket.io.js")

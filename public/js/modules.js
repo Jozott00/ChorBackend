@@ -49,14 +49,14 @@ const updateSeats = seats => {
 //Update Ticket Cost on quantity change
 const updatePrice = selectedObj => {
   console.log('selectedObj:', selectedObj);
-  const quantity = selectedObj.value;
+  const quantity = JSON.parse(selectedObj.value).quantity;
   selectedObj = $('#' + selectedObj.getAttribute('id'));
   const priceElement = selectedObj.siblings('.price');
   console.log('priceElement:', priceElement);
   const price = parseInt(priceElement.attr('data-singlePrice')) * quantity;
 
   priceElement.attr('data-price', price);
-  priceElement.text(price + '€');
+  priceElement.text('€ ' + price + ' ,-');
 
   updateSum();
 };
@@ -76,7 +76,7 @@ const updateSum = () => {
       );
   });
 
-  $('#totalPrice').text(newSum + '€');
+  $('#totalPrice').text('€ ' + newSum + ' ,-');
 };
 
 //addes ticket to order list
@@ -86,15 +86,28 @@ const addTicket = (seatData, seatAv) => {
 
   let selectOptions = '';
 
-  //is more than 1 seat available? -> select options available
+  console.log(seatData.generalId);
+
+  //is more than 1 seat available? -> select options available and set ticket data in value
   if (seatAv > 1) {
     selectOptions += `<select class="col-1" id="${'select_' +
-      seatData.generalId}" onChange="updatePrice(this)" name="ticketQuantity" style="width: 10px">`;
+      seatData.generalId}" onChange="updatePrice(this)" name="tickets" style="width: 10px">`;
     for (i = 1; i <= seatAv; i++) {
-      selectOptions += `<option value="${i}">${i}</option>`;
+      const jsonObj = JSON.stringify({
+        seat: seatData.generalId,
+        quantity: i
+      });
+      console.log('jsonObj:', jsonObj);
+      selectOptions += `<option value='${jsonObj}'>${i}</option>`;
     }
     selectOptions += ' </select>';
-  } else selectOptions = '<p class="col-1"> 1 </p>';
+  } else {
+    const jsonObj = JSON.stringify({
+      seat: seatData.generalId,
+      quantity: 1
+    });
+    selectOptions = `<p class="col-1"> 1 </p><input type="hidden" name="tickets" value='${jsonObj}'>`;
+  }
 
   //add ticket to list
   ticketList.append(
@@ -104,8 +117,8 @@ const addTicket = (seatData, seatAv) => {
               <p class="col-7">${seatName[seatData.generalId.split('-')[0]] +
                 ' ' +
                 seatData.generalId.split('-')[1].toUpperCase()}</p>
-              <p class="price col-2" data-singlePrice="${seatPrice}" data-price="${seatPrice}" > 
-                ${seatPrice} €</p>
+              <p class="price col-2" data-singlePrice="${seatPrice}" data-price="${seatPrice}" > € 
+                ${seatPrice} ,-</p>
               <img class="deleteBtn" id="deleteBtn_${
                 seatData.generalId
               }" src="/img/deleteIcon.png" onclick="removeTicketById(this.getAttribute('id').split('_')[1])" style="width: 30px" alt="Löschen"></div>`

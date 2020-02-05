@@ -11,8 +11,15 @@ const Buyer = sequelize.define('buyer', {
   },
   name: Sequ.STRING,
   firstname: Sequ.STRING,
-  order_date: Sequ.DATE,
-  is_paid: Sequ.BOOLEAN,
+  order_date: {
+    type: Sequ.DATEONLY,
+    allowNull: false,
+    defaultValue: Sequ.NOW
+  },
+  is_paid: {
+    type: Sequ.BOOLEAN,
+    defaultValue: false
+  },
   phone: Sequ.STRING,
   email: Sequ.STRING
 });
