@@ -70,15 +70,16 @@ exports.getConcert = (req, res, next) => {
 
       buyers.forEach(buyer => {
         let sum = 0;
-        buyer.discount = 0;
+        // buyer.discount = 0;
         buyer.quantity = 0;
 
         buyer.tickets.forEach(ticket => {
-          sum +=
-            ticket.price * ticket.amount -
-            ticket.price * ticket.amount * ticket.discount;
-          buyer.discount += ticket.price * ticket.amount * ticket.discount;
+          sum += ticket.price * ticket.amount;
+          // buyer.discount += ticket.price * ticket.amount * ticket.discount;
           buyer.quantity += ticket.amount;
+          console.log(
+            `ticket: ${ticket.rowName}, price: ${ticket.price}, quantity: ${ticket.amount}, sum: ${sum}`
+          );
         });
         buyer.total = sum;
         con.incomes += sum;
@@ -98,22 +99,51 @@ exports.getConcert = (req, res, next) => {
 
 exports.postConcertUpdate = (req, res, next) => {
   const conId = req.params.concertId;
+  console.log(req.body);
 
-  Concert.findByPk(conId)
-    .then(concert => {
-      return Object.keys(req.body).forEach(async buyerId => {
-        await Buyer.update(
-          {
-            is_paid: Seq.literal('NOT is_paid')
-          },
+  let ids = [];
 
-          {
-            where: {
-              id: buyerId
-            }
-          }
-        );
+  Object.keys(req.body).forEach(buyerId => {
+    if (buyerId != '_csrf') {
+      ids.push(buyerId);
+    }
+  });
+
+  console.log(ids);
+  Buyer.update(
+    {
+      is_paid: Seq.literal('NOT is_paid')
+    },
+    {
+      where: {
+        id: ids
+      }
+    }
+  )
+    .then(result => {
+      console.log(1);
+      return Buyer.findAll({ where: { id: ids } });
+    })
+    .then(buyers => {
+      console.log('buyers:', buyers);
+      let soldAdd = 0;
+      buyers.forEach(buyer => {
+        if (buyer.is_paid) soldAdd++;
+        else if (!buyer.is_paid) soldAdd--;
       });
+
+      console.log(soldAdd);
+
+      return Concert.update(
+        {
+          sold: Seq.literal(`sold + ${soldAdd}`)
+        },
+        {
+          where: {
+            id: conId
+          }
+        }
+      );
     })
     .then(result => {
       console.log('result:', result);

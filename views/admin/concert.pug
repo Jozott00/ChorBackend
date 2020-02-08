@@ -9,10 +9,10 @@ block content
             if approval >= 10
                 a.btn.btn-light.btn-sm.lh-1.mb-4(style="max-height: 2rem" href=("/manage/concert/edit/" + concert.id)) Bearbeiten
             div.mx-3
-                p.text-muted Verkaufte Karten: 
-                    span.font-weight-bold.ml-1 #{concert.sold}
-                p.text-muted Offene Karten: 
+                p.text-muted Bestellungen: 
                     span.font-weight-bold.ml-1 #{concert.ordered}
+                p.text-muted Bezahlte Bestellungen: 
+                    span.font-weight-bold.ml-1 #{concert.sold}
             p.text-muted.mx-3 Summe: 
                 span.font-weight-bold.ml-1 € #{concert.incomes},-
             div.ml-auto.text-right
@@ -30,7 +30,7 @@ block content
                         th(scope="col") Bestelldatum
                         th(scope="col") Karten
                         //- th(scope="col") Details
-                        th(scope="col") Erm.
+                        //- th(scope="col") Erm.
                         th(scope="col") Gesamt
                         th(scope="col") Bez.
                         th(scope="col") Name
@@ -48,14 +48,15 @@ block content
                             td #{moment(buyer.date).format('DD.MM.YYYY')}
                             td.sm-btn(data-id=(buyer.id) data-toggle="modal" data-target=("#details" + buyer.id)) #{buyer.quantity}
                             //- td € #{buyer.tickets[0].price},-
-                            td € #{buyer.discount},-
+                            //- td € #{buyer.discount},-
                             td € #{buyer.total},-
                             td
                                 img(src=("/img/" + (buyer.is_paid ? "check" : "close") + ".svg"), alt=buyer.is_paid, style="height: 17px")
                             td #{buyer.name}
                             td #{buyer.firstname}
                             td #{buyer.phone}
-                            td #{buyer.email}
+                            td
+                                a(href=`mailto:${buyer.email}`) #{buyer.email}
                             if approval >= 10
                                 td
                                     //- label.label(for=("toggle" + buyer.id))
@@ -77,18 +78,18 @@ block content
                                     .modal-body
                                         .container-fluid.text-center
                                             .row
-                                                .col-md-2.col-sm-2 Anzahl
-                                                .col-md-2.col-sm-2 Preis
-                                                .col-md-2.col-sm-2 Ermäßigung
+                                                .col-md-3.col-sm-2 Anzahl
+                                                .col-md-3.col-sm-2 Preis
+                                                //- .col-md-2.col-sm-2 Ermäßigung
                                                 .col-md-4.col-sm-4 Sektor
                                                 .col-md-2.col-sm-2 Platz
                                                 
                                             hr
                                             each ticket in buyer.tickets
                                                 .row
-                                                    .col-md-2.col-sm-2  #{ticket.amount}
-                                                    .col-md-2.col-sm-2  #{'€ ' + ticket.price+',-'}
-                                                    .col-md-2.col-sm-2  #{ticket.discount * 100} %
+                                                    .col-md-3.col-sm-2  #{ticket.amount}
+                                                    .col-md-3.col-sm-2  #{'€ ' + ticket.price+',-'}
+                                                    //- .col-md-2.col-sm-2  #{ticket.discount * 100} %
                                                     .col-md-4.col-sm-4  #{ticket.sector}
                                                     .col-md-2.col-sm-2  #{ticket.rowName}
                                                 hr

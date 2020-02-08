@@ -1,6 +1,8 @@
 const nodemailer = require('nodemailer');
 const sendgridTransport = require('nodemailer-sendgrid-transport');
 
+const help = require('../helpers/helper');
+
 const transporter = nodemailer.createTransport(
   sendgridTransport({
     auth: {
@@ -9,8 +11,18 @@ const transporter = nodemailer.createTransport(
   })
 );
 
-exports.send = (subject, content, to, from) => {
+exports.send = (subject, content, to, from, template = null) => {
   return new Promise((res, rej) => {
+    if (template) {
+      switch (template.templateId) {
+        case 1:
+          content = help.getOrderedMail(template);
+          break;
+        default:
+          break;
+      }
+    }
+
     transporter
       .sendMail({
         to: to,

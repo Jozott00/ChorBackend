@@ -7,6 +7,6 @@ router.get('/', controller.getConcerts);
 
 router.get('/concert/:concertId', controller.getConcert);
 
-router.post('/order/:concertId', controller.postOrder);
+router.post('/concert/:concertId', controller.postOrder);
 
 module.exports = router;

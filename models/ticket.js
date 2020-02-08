@@ -13,12 +13,12 @@ const Ticket = sequelize.define('ticket', {
   amount: Sequ.INTEGER,
   sector: Sequ.STRING,
   rowId: Sequ.INTEGER,
-  rowName: Sequ.STRING,
-  discount: {
-    type: Sequ.DOUBLE,
-    defaultValue: 0,
-    allowNull: false
-  }
+  rowName: Sequ.STRING
+  // discount: {
+  //   type: Sequ.DOUBLE,
+  //   defaultValue: 0,
+  //   allowNull: false
+  // }
 });
 
 module.exports = Ticket;

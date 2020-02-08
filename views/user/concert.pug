@@ -32,7 +32,7 @@ block content
                     h2.h2 Kartenbestellung
                     p Bitte wählen sie die gewünschten Sitzplätze aus und füllen sie die Inforamtionsfelder aus.
 
-                    form(action='/order/' + concert.id , method="post")
+                    form(action='/concert/' + concert.id , method="post")
                         input(type="hidden" value=csrfToken name="_csrf")
                         .card.m-2.shadow.my-4
                             .card-body.container

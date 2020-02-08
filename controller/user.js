@@ -1,5 +1,6 @@
 const { Op } = require('sequelize');
 const help = require('../helpers/helper');
+const mail = require('../utils/mailService');
 
 const Concert = require('../models/concert');
 const Info = require('../models/info');
@@ -53,7 +54,7 @@ exports.getConcert = (req, res, next) => {
 
       const errMsg = help.flashMsg(req, 'error');
 
-      console.log(errMsg);
+      // console.log(errMsg);
 
       res.render('user/concert', {
         seats: concert.rows,
@@ -75,12 +76,30 @@ exports.postOrder = (req, res, next) => {
   let phone = req.body.tel;
 
   let sectors;
+  let mailObj = {
+    templateId: 1,
+    concertName: 'Nicht gesetzt',
+    concertDate: 'Nicht gesetzt',
+    concertTime: 'Nicht gesetzt',
+    concertLocation: 'Nicht gesetzt',
+    tickets: [],
+    orderId: 'Nicht gesetzt',
+    firstname: 'Nicht gesetzt',
+    lastname: 'Nicht gesetzt',
+    email: 'Nicht gesetzt',
+    phone: 'Nicht gesetzt'
+  };
 
   try {
     if (!(lastname && firstname && email && phone)) {
       req.flash('error', 'Bitte geben sie alle Kontaktinformationen an!');
       return res.redirect('/concert/' + concertId);
     }
+
+    mailObj.lastname = lastname;
+    mailObj.firstname = firstname;
+    mailObj.email = email;
+    mailObj.phone = phone;
 
     if (!tickets) {
       req.flash(
@@ -97,16 +116,26 @@ exports.postOrder = (req, res, next) => {
           include: [
             {
               model: Seat
+            },
+            {
+              model: Info
             }
           ]
         });
       })
       .then(concert => {
         const seats = concert.rows;
+        let ticketStore = [];
+        let ticketQuantiy = 0;
+
+        //add concert to mail data
+        mailObj.concertDate = concert.date;
+        mailObj.concertLocation = concert.info.location;
+        mailObj.concertName = concert.name;
+        mailObj.concertTime = concert.info.time;
+
         if (!Array.isArray(tickets)) tickets = [tickets];
         console.log('tickets:', tickets);
-
-        let ticketStore = [];
 
         tickets.forEach(ticket => {
           ticket = JSON.parse(ticket);
@@ -141,26 +170,35 @@ exports.postOrder = (req, res, next) => {
           }
 
           const storeOptions = {
-            price:
-              sectors.find(sector => sector.id == seatDoc.sectorId).price *
-              ticket.quantity,
+            price: sectors.find(sector => sector.id == seatDoc.sectorId).price,
             amount: ticket.quantity,
             sector: seatDoc.sectorId,
             rowId: seatDoc.id,
             rowName: seatDoc.generalId
           };
           ticketStore.push(storeOptions);
+          ticketQuantiy += ticket.quantity;
+
+          //add ticket to email data
+          mailObj.tickets.push({
+            name: help.getSeatName(seatDoc.generalId),
+            quantity: ticket.quantity,
+            price: storeOptions.price * ticket.quantity
+          });
         });
-        Buyer.create({
-          name: lastname,
-          firstname: firstname,
-          phone: phone,
-          email: email
-        })
+        concert
+          .createBuyer({
+            name: lastname,
+            firstname: firstname,
+            phone: phone,
+            email: email
+          })
           .then(async buyer => {
-            ticketStore.forEach(ticket => {
-              buyer
-                .createTicket(ticket)
+            mailObj.orderId = buyer.id;
+
+            for (i = 0; i < ticketStore.length; i++) {
+              await buyer
+                .createTicket(ticketStore[i])
                 .then(ticket => {
                   // console.log('ticket:', ticket);
                   const newSeat = seats.find(seat => seat.id == ticket.rowId);
@@ -169,9 +207,7 @@ exports.postOrder = (req, res, next) => {
                     newSeat.is_available = false;
                   return newSeat.save();
                 })
-                .then(newSeat => [
-                  //console.log('newSeat:', newSeat)
-                ])
+                .then(newSeat => [console.log('newSeat:', newSeat)])
                 .catch(err => {
                   console.log('err:', err);
                   req.flash(
@@ -180,8 +216,25 @@ exports.postOrder = (req, res, next) => {
                   );
                   return res.redirect('/concert/' + concertId);
                 });
-            });
+            }
+            console.log('------------ done');
 
+            concert.ordered += 1;
+            concert.ticketsSold += ticketQuantiy;
+
+            return concert.save();
+          })
+          .then(concert => {
+            //send order success mail to client
+            return mail.send(
+              'Bestellung war erfolgreich',
+              (content = 'Ihre Bestellung ist angekommen'),
+              email,
+              'kanzlei@chor.kalvarienbergkirche.at',
+              mailObj
+            );
+          })
+          .then(result => {
             res.send('<h2>Geschafft</h2>');
           })
           .catch(err => {
