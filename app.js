@@ -9,6 +9,11 @@ const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const csrf = require('csurf');
 const bcrypt = require('bcryptjs');
+const schedule = require('node-schedule');
+
+const help = require('./helpers/helper');
+const dbAction = require('./helpers/dbRequest');
+const prototype = require('./helpers/prototype');
 
 const webSocket = require('./controller/webSocket');
 const errorController = require('./controller/error');
@@ -24,6 +29,8 @@ const User = require('./models/user');
 const app = express();
 const csrfProtection = csrf();
 
+exports.app = app;
+
 app.locals.moment = require('moment');
 
 app.set('view engine', 'pug');
@@ -33,18 +40,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, '/public')));
 
 var sessionStore = new SequelizeStore({
-  db: sequelize
+  db: sequelize,
 });
 app.use(
   session({
-    secret: 'ein sehr großes Geheimnis',
+    secret: process.env.HASH_KEY,
     resave: false,
     saveUninitialized: false,
-    store: sessionStore
+    store: sessionStore,
   })
 );
 sessionStore.sync();
-app.use(csrfProtection);
+// app.use(csrfProtection);
 app.use(flash());
 
 app.use((req, res, next) => {
@@ -54,6 +61,8 @@ app.use((req, res, next) => {
     res.locals.approval = req.session.user.approvalCode;
     res.locals.email = req.session.user.email;
   }
+  res.locals.errorMsg = help.flashMsg(req, 'error');
+  res.locals.successMsg = help.flashMsg(req, 'success');
   next();
 });
 
@@ -70,61 +79,72 @@ app.use(errorController.get404);
 Concert.hasOne(Info);
 Concert.hasMany(Buyer);
 Buyer.hasMany(Ticket);
+Buyer.belongsTo(Concert);
 Concert.hasMany(Availability);
 Concert.hasMany(Row);
+Ticket.belongsTo(Row);
+Row.hasMany(Ticket);
+Sector.hasMany(Row);
+Row.belongsTo(Sector);
+Row.belongsTo(Concert);
+
+Buyer.afterCreate(async (buyer, options) => {
+  buyer.orderId = buyer.id + 4861;
+  await buyer.save();
+});
 
 sequelize
   .sync({
-    // force: true
+    // force: true,
   })
-  .then(result => {
+  .then((result) => {
     console.log('------------------');
     console.log('\x1b[36m%s\x1b[0m', 'Database syncronised');
     return Sector.findAll();
   })
-  .then(sectors => {
+  .then((sectors) => {
     if (sectors.length == 0) {
-      Sector.create({
-        price: 35
+      return Sector.create({
+        price: 35,
       })
-        .then(sec => {
+        .then((sec) => {
           return Sector.create({
-            price: 30
+            price: 30,
           });
         })
-        .then(sec => {
+        .then((sec) => {
           return Sector.create({
-            price: 27
+            price: 27,
           });
         })
-        .then(sec => {
+        .then((sec) => {
           return Sector.create({
-            price: 25
+            price: 25,
           });
         })
-        .then(sec => {
+        .then((sec) => {
           return Sector.create({
-            price: 20
+            price: 20,
           });
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     }
     return User.findByPk(1);
   })
-  .then(user => {
+  .then((user) => {
     if (user) return user;
-    return bcrypt.hash(process.env.ADMIN_PASS, 12).then(hashedPass => {
+    return bcrypt.hash(process.env.ADMIN_PASS, 12).then((hashedPass) => {
       return User.create({
         id: 1,
         email: 'official@johannes-zottele.at',
         password: hashedPass,
-        approvalCode: 15
+        approvalCode: 15,
       });
     });
   })
-  .then(result => {
+  .then((result) => {
     // Port 8080 for Google App Engine
     app.set('port', process.env.PORT || 3000);
     const server = app.listen(app.get('port'), () => {
@@ -132,7 +152,15 @@ sequelize
     });
 
     webSocket.run(server);
+
+    const rule = new schedule.RecurrenceRule();
+    rule.minute = 32;
+
+    const j = schedule.scheduleJob(rule, async () => {
+      console.log('Verfallene Ticketreservierungen löschen...', new Date());
+      console.log('Deleted OrderIds: ', await dbAction.deleteExpiredOrders());
+    });
   })
-  .catch(err => {
+  .catch((err) => {
     console.log(err);
   });

@@ -1,0 +1,74 @@
+extends ../layout/main-layout.pug
+
+block content
+    main.py-4.px-5
+        .d-flex.flex-wrap
+            div
+                h4.mb-1 Chorliste
+                //- h5.text-muted #{concert.componist}
+            a.btn.btn-light.btn-sm.lh-1(style="max-height: 2rem" href=("/manage/chorsetting/addmember")) +
+            div.mx-3
+                p.text-muted Mitglieder: 
+                    span.font-weight-bold.ml-1 #{memberData.all}
+                p.text-muted SängerInnen: 
+                    span.font-weight-bold.ml-1 #{memberData.singers}
+            div.mx-3
+                p.text-muted Sopran: 
+                    span.font-weight-bold.ml-1 #{memberData[0]}
+                p.text-muted Alt: 
+                    span.font-weight-bold.ml-1 #{memberData[1]}
+            div.mx-3
+                p.text-muted Tenor: 
+                    span.font-weight-bold.ml-1 #{memberData[2]}
+                p.text-muted Bass: 
+                    span.font-weight-bold.ml-1 #{memberData[3]}
+            div.mx-3
+                a.btn.btn-light.btn-sm.lh-1(style="max-height: 2rem" href=("/manage/chorsetting/csv")) CSV-Datei herunterladen
+
+        form(action=("/manage/chorsettings"), method="post")
+            input(type="hidden" value=csrfToken name="_csrf")
+            table.table.text-center(rules="none" style="max-width: 70rem").mt-4
+                div
+                    tr
+                        th(scope="col") ID
+                        th(scope="col") Name
+                        th(scope="col") Email
+                        //- th(scope="col") Details
+                        //- th(scope="col") Erm.
+                        th(scope="col") Stimme
+                        th(scope="col") Löschen
+                        th(scope="col") Bearbeiten
+                        //- th(scope="col")
+                        //-     if approval >= 9
+                        //-         button.btn-white(type="submit") Speichern
+
+                tbody.data
+                    each member in members
+                        tr
+                            td(scope="row") #{member.id}
+                            td #{member.firstname + ' ' + member.name}
+                            td #{member.email}
+                            //- td € #{member.tickets[0].price},-
+                            //- td € #{member.discount},-
+                            td #{member.voice}
+                            td
+                                a(href="#" data-href="/manage/chorsetting/delete/" + member.id data-toggle="modal" data-membername=`${member.firstname} ${member.name}` data-target="#confirm-delete")
+                                    img(src="/img/deleteIcon.png" alt="Löschen" width="20px")
+                                //- img(src=("/img/" + (member.is_paid ? "check" : "close") + ".svg"), alt=member.is_paid, style="height: 17px")
+                            td 
+                                a(href='/manage/chorsetting/edit/' + member.id)
+                                    img(src="/img/editIcon.png" alt="Bearbeiten" width="20px")
+
+        #confirm-delete.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+            .modal-dialog
+                .modal-content
+                    .modal-header
+                        h4#myModalLabel.modal-title Löschbestätigung
+                        button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+                    .modal-body
+                        p.content Sicher dass du das löschen möchtes? (wird in main.js verändert)
+                        p Möchtest du fortfahen?
+                        p.debug-url
+                    .modal-footer
+                        button.btn.btn-default(type='button', data-dismiss='modal') Abbrechen
+                        a.btn.btn-danger.btn-ok Löschen

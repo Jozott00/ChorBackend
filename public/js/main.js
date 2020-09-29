@@ -22,6 +22,18 @@ $(document).ready(function() {
 });
 
 load = () => {
-  console.log('hello');
   $('#load').addClass('active');
 };
+
+$('#confirm-delete').on('show.bs.modal', function(e) {
+  $(this)
+    .find('.content')
+    .text(
+      `Sicher dass du ${$(e.relatedTarget).data(
+        'membername'
+      )} aus Chorliste löschen möchtest?`
+    );
+  $(this)
+    .find('.btn-ok')
+    .attr('href', $(e.relatedTarget).data('href'));
+});

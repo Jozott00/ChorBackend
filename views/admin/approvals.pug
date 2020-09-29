@@ -1,0 +1,35 @@
+extends ../layout/main-layout.pug
+
+block content
+    main.p-4.text-center
+        h2 Genehmigungen bearbeiten
+
+        form(action="/manage/approvals", method="post")
+            input(type="hidden" name='_csrf' value=csrfToken)
+            ul.list-group.container.mt-5
+                each user in users
+                    if user.id != 1
+                        li.list-group-item.d-flex.row
+                            p.col-2 #{user.id}
+                            p.col-5 #{user.email}
+                            select.ml-5(name=user.id)
+                                option(value="0" selected=(user.approvalCode == 0)) Keine Berechtigung
+                                option(value="1" selected=(user.approvalCode == 1)) Mailsverschicker
+                                option(value="4" selected=(user.approvalCode == 4)) Ticketverkäufer
+                                option(value="6" selected=(user.approvalCode == 6)) Konzertanalyst
+                                option(value="8" selected=(user.approvalCode == 8)) Choradministrator
+                                option(value="9" selected=(user.approvalCode == 9)) Konzertverkäufer
+                                option(value="10" selected=(user.approvalCode == 10)) Konzertadministrator
+                                option(value="15" selected=(user.approvalCode == 15)) Admin
+            button.btn.btn-light.btn-lg.mt-3(type="submit") Speichern
+
+        .mt-5.text-left
+            h4 Legende
+            p  0: Keine Berechtigung (default), kann keine Daten einsehen
+            p  1 (Mailsverschicker): Darf Mails versenden
+            p  4 (Ticketverkäufer): Darf alles bis 2 und Ticketsverkaufen. Bekommt zugang zu tickerverkauf ohne Zahlungsmittel
+            p  6 (Konzertanalyst): Alles bis 6 und hat Einsicht in aktuelle verkaufszahlen.
+            p  8 (Choradministrator): Alles bis 8 und darf Chormitgliedseinträge verändern. (Chorverwaltung)
+            p  9 (Konzertverkäufer): Alles bis 9 und darf Bestellungen als bezahlt markieren oder Löschen.
+            p  10 (Konzertadministrator): Alles bis 10 und darf Konzerte erstellen, sowie bearbeiten.
+            p  15 (Admin): Hat Zugriff auf alle Daten und verfügt über die Berechtigung anderen Nuztern Genemigungen zu erteilen.

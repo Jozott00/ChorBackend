@@ -14,4 +14,9 @@ router.post('/signin', controller.postSignin);
 
 router.post('/signup', controller.postSignup);
 
+//QR APP ROUTER
+router.get('/qrapp/ticketcheck/', controller.getQRcheck);
+
+router.get('/qrapp/ticketcheck/scanned/', controller.getQRchecked);
+
 module.exports = router;

@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
   // //load church map
   // $('#map').load('/img/seats.svg');
 
@@ -7,32 +7,33 @@ $(document).ready(function() {
   const concertId = parseInt(window.location.href.split('/').pop());
 
   socket.emit('setup', {
-    concertId: concertId
+    concertId: concertId,
   });
 
   //standard messages
-  socket.on('msg', data => {
+  socket.on('msg', (data) => {
     console.log('Message:', data.msg);
   });
 
   //errors
-  socket.on('err', data => {
+  socket.on('err', (data) => {
     console.log('Error: ', data.msg);
   });
 
   //got seats
-  socket.on('seats', seats => {
+  socket.on('seats', (seats) => {
     console.log('seats:', seats);
     updateSeats(seats);
   });
 
   //first communication
-  socket.on('setup', setupData => {
+  socket.on('setup', (setupData) => {
     sectors = setupData.sectors;
     seatName = setupData.seatName;
 
     //load church map
-    $('#map').load('/img/seats.svg', function() {
+    $('#map').load('/img/seats.svg', function () {
+      $('#map').removeClass('centeredLoadingIndicator');
       seatsData = setupData.seats;
       updateSeats(setupData.seats);
       popover();
@@ -40,9 +41,9 @@ $(document).ready(function() {
   });
 
   //ON SEATSELECTION
-  $(document).on('click', 'rect, path', function() {
+  $(document).on('click', 'rect, path', function () {
     const seat = $(this);
-    const seatData = seatsData.find(s => s.generalId == seat.attr('id'));
+    const seatData = seatsData.find((s) => s.generalId == seat.attr('id'));
     const seatAv = seatData.max_seats - seatData.orders;
 
     // if seat is valid
@@ -67,6 +68,7 @@ $(document).ready(function() {
       } else {
         if (seatAv > 0) {
           seat.addClass('selected');
+
           //delete modal target, so modal doesnt appears on unselect
           seat.attr('data-target', '#none');
 

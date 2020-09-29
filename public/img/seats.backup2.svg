@@ -7,8 +7,8 @@
 			<stop offset="95%" stop-color="#50A7C2"></stop>
 		</linearGradient>
 		<linearGradient id="sector25">
-			<stop offset="5%" stop-color="#ff9966"></stop>
-			<stop offset="95%" stop-color="#ff5e62"></stop>
+			<stop offset="5%" stop-color="#da4453"></stop>
+			<stop offset="95%" stop-color="#89216b"></stop>
 		</linearGradient>
 		<linearGradient id="sector27">
 			<stop offset="5%" stop-color="#f2994a"></stop>

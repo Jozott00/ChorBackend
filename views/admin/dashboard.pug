@@ -6,20 +6,24 @@ block content
         .d-flex.flex-wrap
             .card.flex-fill.m-2.shadow(style="width: 25rem; max-width: 50rem")
                 .card-body
-                    .form
+                    form.form( action="/manage/email" method="post")
                         input(type="hidden" value=csrfToken name="_csrf")
                         h5.card-title.mt-1.d-inline-block E-Mail versenden
                         .d-inline-block.float-right.mt-0
                             p.d-inline-block.mr-2 An:
                             .d-inline-block.form-group
                                 select.form-control(name="toSelect")
-                                    option(value="1") Chorliste
+                                    option(value="4") Chorliste
+                                    option(value="0") Sopran
+                                    option(value="1") Alt
+                                    option(value="2") Tenor
+                                    option(value="3") Bass
                         hr.mt-1
                         .contentfields
                             .input-group.mb-3
                                 .input-group-pretend.mr-2
                                     span.lh-1.h6.text-muted Betreff:
-                                input.form-control.mw-50(type="text")
+                                input.form-control.mw-50(type="text" name="subject" style="height: 1.7rem")
                             textarea(name="content").textarea.mb-3
                         button.btn.btn-primary.btn-sm.px-4(type="submit") Senden
             if approval >= 6

@@ -2,25 +2,24 @@ const socket = require('socket.io');
 
 const request = require('../helpers/dbRequest');
 
-exports.run = server => {
+exports.run = (server) => {
   //Socket setup
   const io = socket(server);
 
   //on socketconnection
-  io.on('connection', socket => {
+  io.on('connection', (socket) => {
     console.log('Socket connected with', socket.id);
     socket.emit('msg', { msg: 'Socket connected' });
 
+    sock = socket;
+
     //setup
-    socket.on('setup', data => {
-      let seats;
+    socket.on('setup', (data) => {
       request
         .getSeats(data.concertId)
-        .then(_seats => {
-          seats = _seats;
-          return request.getSectors();
-        })
-        .then(sectors => {
+        .then(async (seats) => {
+          const sectors = await request.getSectors();
+
           const seatName = {
             hl: 'Hauptschiff Links, Reihe',
             hr: 'Haupschiff Rechts, Reihe',
@@ -33,28 +32,29 @@ exports.run = server => {
             el: 'Empore Links, Platz',
             er: 'Empore Rechts, Platz',
             ll: 'Loge Links, Platz',
-            lr: 'Loge Rechts, Platz'
+            lr: 'Loge Rechts, Platz',
           };
+
           socket.emit('setup', {
             seats: seats,
             sectors: sectors,
-            seatName: seatName
+            seatName: seatName,
           });
         })
-        .catch(err => {
+        .catch((err) => {
           console.log('err:', err);
         });
     });
 
     //getSeats abfrage
-    socket.on('getSeats', data => {
+    socket.on('getSeats', (data) => {
       request
         .getSeats(data.concertId)
-        .then(seats => {
+        .then((seats) => {
           //return seats
           socket.emit('seats', seats);
         })
-        .catch(err => {
+        .catch((err) => {
           console.log('err:', err);
         });
     });

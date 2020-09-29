@@ -33,6 +33,43 @@ router.get(
   controller.getConcertEdit
 );
 
+router.get('/approvals', isAuth, min.overallAdmin, controller.getApprovals);
+
+router.get(
+  '/chorsetting',
+  isAuth,
+  min.chorAdministrator,
+  controller.getChorAdministration
+);
+
+router.get(
+  '/chorsetting/addmember',
+  isAuth,
+  min.chorAdministrator,
+  controller.getAddMember
+);
+
+router.get(
+  '/chorsetting/delete/:memberId',
+  isAuth,
+  min.chorAdministrator,
+  controller.getDeleteMember
+);
+
+router.get(
+  '/chorsetting/edit/:memberId',
+  isAuth,
+  min.chorAdministrator,
+  controller.getEditMember
+);
+
+router.get(
+  '/chorsetting/csv',
+  isAuth,
+  min.chorAdministrator,
+  controller.getCsv
+);
+
 router.post(
   '/concert/update/:concertId',
   isAuth,
@@ -53,5 +90,30 @@ router.post(
   min.concertAdministrator,
   controller.postConcertEdit
 );
+
+router.post('/approvals', isAuth, min.overallAdmin, controller.postApprovals);
+
+router.post(
+  '/chorsetting',
+  isAuth,
+  min.chorAdministrator,
+  controller.postChorAdministration
+);
+
+router.post(
+  '/chorsetting/addMember',
+  isAuth,
+  min.chorAdministrator,
+  controller.postAddMember
+);
+
+router.post(
+  '/chorsetting/edit/:memberId',
+  isAuth,
+  min.chorAdministrator,
+  controller.postEditMember
+);
+
+router.post('/email', isAuth, min.mailSender, controller.postEmail);
 
 module.exports = router;

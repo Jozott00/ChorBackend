@@ -20,11 +20,18 @@ html(lang="de")
                     if approval >= 8
                         li.nav-item
                             a.nav-link(href="/manage/chorsetting", class=(path === "/settings" ? "active" : "")) Chorverwaltung
+                    if approval >= 15
+                        li.nav-item
+                            a.nav-link(href="/manage/approvals", class=(path === "/approvals" ? "active" : "")) Genehmigungen
                 ul.nav.justify-content-end
                     li.nav-item
                         a.nav-link.disabled #{email}
                     li.nav-item
                         a.nav-link(href="/logout") Logout
+        if errorMsg
+            .alert.alert-danger.text-center #{errorMsg}
+        if successMsg 
+                .alert.alert-success.text-center #{successMsg}
         block content
 
         script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js")

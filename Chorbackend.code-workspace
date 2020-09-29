@@ -1,10 +1,17 @@
 {
-	"folders": [
-		{
-			"path": "."
-		}
-	],
-	"settings": {
-		"editor.formatOnSave": true
-	}
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "editor.formatOnSave": true,
+    "autofold.types": [
+      { "ext": ".js", "level": 1 }
+      //   { "ext": ".c", "level": 1 },
+      //   { "ext": ".cs", "level": 2 },
+      //   { "ext": ".conf.php", "level": 1 },
+      //   { "ext": ".php", "level": 2 }
+    ]
+  }
 }

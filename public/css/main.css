@@ -21,7 +21,7 @@ button:focus {
 }
 
 .form-control {
-  height: 1.7rem;
+  /* height: 1.7rem; */
   font-size: 14px;
 }
 
@@ -93,7 +93,15 @@ label {
 }
 
 .navbar-light {
-  background-color: #f3f3f3 !important;
+  background: linear-gradient(90deg, #824d83 0%, #f35476 50%, #ffb44e 100%);
+}
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  background: linear-gradient(
+    90deg,
+    #ffb44e 0%,
+    #f35476 100% /* #824d83 100% */
+  );
 }
 
 /* Additional classes */
@@ -190,13 +198,32 @@ label {
 }
 
 .logo {
-  color: black;
+  color: white;
   font-weight: bolder;
 }
 .logo:hover {
-  color: black;
+  color: #fcfcfc;
+  transition: 0.5s;
 }
 /* Loading Indicator */
+
+header a {
+  color: white;
+}
+header a:hover {
+  /* color: #ff2ef1;
+   */
+
+  color: white;
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg id='squiggle-link' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:ev='http://www.w3.org/2001/xml-events' viewBox='0 0 20 4'%3E%3Cstyle type='text/css'%3E.squiggle{animation:shift .5s linear infinite;}@keyframes shift {from {transform:translateX(0);}to {transform:translateX(-20px);}}%3C/style%3E%3Cpath fill='none' stroke='white' stroke-width='2' class='squiggle' d='M0,3.5 c 5,0,5,-3,10,-3 s 5,3,10,3 c 5,0,5,-3,10,-3 s 5,3,10,3'/%3E%3C/svg%3E");
+  background-position: bottom;
+  background-repeat: repeat-x;
+  background-size: 20%;
+  border-bottom: 0;
+  padding-bottom: 0.3em;
+  text-decoration: none;
+  transition: 0.3s;
+}
 
 .load {
   z-index: -1;

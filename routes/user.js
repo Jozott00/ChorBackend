@@ -9,4 +9,14 @@ router.get('/concert/:concertId', controller.getConcert);
 
 router.post('/concert/:concertId', controller.postOrder);
 
+router.get('/reservation-email/', controller.getReservationEmail);
+
+router.get('/checkout/payment/', controller.getPaymentForwarding);
+
+router.get('/checkout/success/', controller.getSuccess);
+
+router.get('/checkout/cancel', controller.getCancel);
+
+router.post('/posttest', controller.getPostTest);
+
 module.exports = router;

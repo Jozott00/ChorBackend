@@ -16,16 +16,24 @@
     "connect-flash": "^0.1.1",
     "connect-session-sequelize": "^6.0.0",
     "csurf": "^1.11.0",
+    "csv-writer": "^1.6.0",
+    "debug": "^4.2.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-session": "^1.17.0",
+    "image-data-uri": "^2.0.1",
     "moment": "^2.24.0",
     "mysql2": "^2.0.0",
+    "node-schedule": "^1.3.2",
     "nodemailer": "^6.4.2",
     "nodemailer-sendgrid-transport": "^0.2.0",
     "nodemon": "^1.19.4",
     "pug": "^2.0.4",
+    "puppeteer": "^5.2.1",
+    "qrcode": "^1.4.4",
     "sequelize": "^5.21.2",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.3.0",
+    "stripe": "^8.89.0",
+    "uuid": "^8.3.0"
   }
 }

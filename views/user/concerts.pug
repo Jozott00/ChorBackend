@@ -3,8 +3,12 @@ extends ../layout/user-layout.pug
 block style
 
 block content
-    main.p-3
-        .d-flex.pl-4.mb-4
+    main.px-3(style='padding-top: 56px')
+        if errorMsg
+            .alert.alert-danger.text-center #{errorMsg}
+        if successMsg 
+            .alert.alert-success.text-center #{successMsg}
+        .d-flex.pl-4.mb-4.mt-4
             h3.align-self-center.m-0 Alle Konzerte
         .d-flex.flex-wrap
             each concert in concerts

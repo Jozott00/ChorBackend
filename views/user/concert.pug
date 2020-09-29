@@ -7,6 +7,8 @@ block content
     main(style="padding-top: 56px")
         if errorMsg 
                 .alert.alert-danger #{errorMsg}
+        if successMsg 
+            .alert.alert-success.text-center #{successMsg}
 
         #alertBox
         #scrollHint.d-flex
@@ -18,7 +20,14 @@ block content
 
         p#seatPopover.btn.shadow 10/20
         .d-flex.flex-wrap
-            #map
+            #map.centeredLoadingIndicator
+                .lds-ellipsis
+                    div
+                    div
+                    div
+                    div
+
+
             .orderControl
                 .mb-4
                     .d-flex
@@ -26,8 +35,6 @@ block content
                             h1.h1 #{concert.name}
                             h3.h3.text-muted #{concert.componist}
                         div 
-
-
                 .mb-4
                     h2.h2 Kartenbestellung
                     p Bitte wählen sie die gewünschten Sitzplätze aus und füllen sie die Inforamtionsfelder aus.
@@ -61,7 +68,7 @@ block content
                                         //- label.sr-only(for="tel") Telefon
                                         input.form-control#inputTel(type="tel" name="tel" placeholder="Telefon" value="+436801234904" required)        
                         .text-center
-                                button.btn.btn-lg.btn-primary.shadow(type="submit") Bestellen
+                                button#order-btn.btn.btn-lg.btn-primary.shadow(type="submit") Bestellen
 
 block scripts
     script(src="https://cdn.jsdelivr.net/npm/socket.io-client@2/dist/socket.io.js")

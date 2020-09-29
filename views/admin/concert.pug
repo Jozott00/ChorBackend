@@ -4,7 +4,7 @@ block content
     main.py-4.px-5
         .d-flex.flex-wrap
             div
-                h4.mb-1#lol #{concert.name}
+                h4.mb-1 #{concert.name}
                 h5.text-muted #{concert.componist}
             if approval >= 10
                 a.btn.btn-light.btn-sm.lh-1.mb-4(style="max-height: 2rem" href=("/manage/concert/edit/" + concert.id)) Bearbeiten
@@ -13,8 +13,11 @@ block content
                     span.font-weight-bold.ml-1 #{concert.ordered}
                 p.text-muted Bezahlte Bestellungen: 
                     span.font-weight-bold.ml-1 #{concert.sold}
-            p.text-muted.mx-3 Summe: 
-                span.font-weight-bold.ml-1 € #{concert.incomes},-
+            div.mx-3
+                p.text-muted.mx-3 Summe: 
+                    span.font-weight-bold.ml-1 € #{concert.incomes},-
+                p.text-muted.mx-3 Reservierte Karten: 
+                    span.font-weight-bold.ml-1 #{concert.ticketsSold}
             div.ml-auto.text-right
                 p.text-muted Konzert am  
                     span.font-weight-bold #{moment(concert.date).format('DD.MM.YYYY')}
@@ -44,7 +47,7 @@ block content
                 tbody.data
                     each buyer in buyers
                         tr(data-toggle="visible", data-target=("toggle" + buyer.id) ,data-row="1")
-                            td(scope="row") #{buyer.id}
+                            td(scope="row") #{buyer.orderId}
                             td #{moment(buyer.date).format('DD.MM.YYYY')}
                             td.sm-btn(data-id=(buyer.id) data-toggle="modal" data-target=("#details" + buyer.id)) #{buyer.quantity}
                             //- td € #{buyer.tickets[0].price},-
