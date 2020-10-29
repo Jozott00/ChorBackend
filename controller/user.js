@@ -378,12 +378,12 @@ exports.getPaymentForwarding = (req, res, next) => {
       const payValid = uuid.v4();
       buyer.pva = payValid;
 
-      console.log('buyer:', buyer);
+      // console.log('buyer:', buyer);
 
       return buyer.save();
     })
     .then((buyer) => {
-      console.log('buyer2:', buyer);
+      // console.log('buyer2:', buyer);
 
       const concert = buyer.concert;
       const payValid = buyer.pva;
