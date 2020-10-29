@@ -54,7 +54,13 @@ exports.createTicketPdf = (buyer) => {
 
         console.log('Generating PDF ...');
 
-        const browser = await puppeteer.launch();
+        const pupptOptions = {};
+
+        //set chromiumpath for linux server
+        if(process.env.NODE_ENV == 'production') 
+          pupptOptions.executablePath = '/usr/bin/chromium-browser';
+        
+        const browser = await puppeteer.launch(pupptOptions);
         const page = await browser.newPage();
         await page.setContent(html);
         const pdf = await page.pdf({ format: 'A4' });
