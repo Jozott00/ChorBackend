@@ -52,8 +52,9 @@ app.use(
   })
 );
 sessionStore.sync();
-// app.use(csrfProtection);
+app.use(csrfProtection);
 app.use(flash());
+
 
 app.use((req, res, next) => {
   res.locals.isLoggedIn = req.session.isLoggedIn;
