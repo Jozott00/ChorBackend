@@ -10,6 +10,7 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const csrf = require('csurf');
 const bcrypt = require('bcryptjs');
 const schedule = require('node-schedule');
+const debug = require('debug');
 
 const help = require('./helpers/helper');
 const dbAction = require('./helpers/dbRequest');

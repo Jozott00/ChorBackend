@@ -1,5 +1,5 @@
 const { Op } = require('sequelize');
-const stripe = require('stripe')('sk_test_t2Ft5w5w0QbHQcC9deDwtPPn00fL0A3knj');
+const stripe = require('stripe')(process.env.STRIPE_KEY);
 const help = require('../helpers/helper');
 const mail = require('../utils/mailService');
 const moment = require('moment');
