@@ -30,6 +30,8 @@ const User = require('./models/user');
 const app = express();
 const csrfProtection = csrf();
 
+console.log(process.env.DB_HOST)
+
 exports.app = app;
 
 app.locals.moment = require('moment');
