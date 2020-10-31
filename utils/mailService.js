@@ -48,7 +48,7 @@ exports.send = (
 
     let mailOptions = {
       to: to,
-      from: from,
+      from: process.env.IDENITY_MAILADDRESS,
       subject: subject,
       text: content,
     };
